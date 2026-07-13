@@ -2,13 +2,14 @@
 NODE_VERSION = "20"
 NODE_OPTIONS = "--max-old-space-size=4096"
 NEXT_TELEMETRY_DISABLED = "1"
+# Keep mail secrets out of the image build — set them only as runtime env in Easypanel
 
 [phases.setup]
 nixPkgs = ["nodejs_20", "npm-10_x"]
 
 [phases.install]
-# Prefer lockfile; fall back if lock is temporarily out of sync on the server
-cmds = ["npm ci || npm install"]
+# Use npm install (not npm ci) so a slightly stale lockfile does not fail the whole deploy
+cmds = ["npm install --no-audit --no-fund"]
 
 [phases.build]
 cmds = ["npm run build"]

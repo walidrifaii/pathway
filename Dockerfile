@@ -1,8 +1,8 @@
 # Next.js production image for Easypanel / Docker
 FROM node:20-bookworm-slim AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json package-lock.json .npmrc ./
+RUN npm ci || npm install --no-audit --no-fund
 
 FROM node:20-bookworm-slim AS builder
 WORKDIR /app
