@@ -2,14 +2,15 @@
 NODE_VERSION = "20"
 NODE_OPTIONS = "--max-old-space-size=4096"
 NEXT_TELEMETRY_DISABLED = "1"
-# Keep mail secrets out of the image build — set them only as runtime env in Easypanel
+# Prefer Build method = Dockerfile. If staying on Nixpacks, clear Install Command
+# or set it to: bash ./scripts/easypanel-install.sh
+# Set MAIL_* as runtime Environment only — never as Build Args.
 
 [phases.setup]
 nixPkgs = ["nodejs_20", "npm-10_x"]
 
 [phases.install]
-# Use npm install (not npm ci) so a slightly stale lockfile does not fail the whole deploy
-cmds = ["npm install --no-audit --no-fund"]
+cmds = ["bash ./scripts/easypanel-install.sh"]
 
 [phases.build]
 cmds = ["npm run build"]
