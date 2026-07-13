@@ -1,17 +1,12 @@
 import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { config } from "@/constants/config";
+import { contactInfo } from "@/constants/contact";
 import { routes } from "@/constants/routes";
 import { heroServices } from "@/features/home/data";
 import { navigation } from "@/data/navigation";
 
 const companyLinks = navigation.filter((item) => item.label !== "Services");
-
-const contact = {
-  email: "info@raepathways.com",
-  phone: "+61 2 0000 0000",
-  address: "Sydney, Australia",
-};
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -79,16 +74,16 @@ export function Footer() {
             </h3>
             <ul className="mt-5 flex flex-col gap-4 text-[0.95rem] text-white/75">
               <li>
-                <a href={`mailto:${contact.email}`} className="transition-colors hover:text-gold">
-                  {contact.email}
+                <a href={contactInfo.emailHref} className="transition-colors hover:text-gold">
+                  {contactInfo.email}
                 </a>
               </li>
               <li>
-                <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-gold">
-                  {contact.phone}
+                <a href={contactInfo.phoneHref} className="transition-colors hover:text-gold">
+                  {contactInfo.phone}
                 </a>
               </li>
-              <li>{contact.address}</li>
+              <li>{contactInfo.address}</li>
             </ul>
           </div>
         </div>
