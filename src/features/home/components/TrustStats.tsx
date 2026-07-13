@@ -75,7 +75,7 @@ const icons = {
 
 export function TrustStats() {
   return (
-    <section className="bg-[#002147] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+    <section className="border-b-4 border-gold bg-[#002147] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
       <div className="mx-auto max-w-[1400px]">
         <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-6">
           {trustStats.map((stat) => {

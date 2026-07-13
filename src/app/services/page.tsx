@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { OurServices } from "@/features/services/components/OurServices";
+import { ServicesHero } from "@/features/services/components/ServicesHero";
+import { ServicesGrid } from "@/features/services/components/ServicesGrid";
+import { TrustStats } from "@/features/home/components/TrustStats";
 import { servicesPageContent } from "@/features/services/data";
 import { config } from "@/constants/config";
 
@@ -11,7 +13,9 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main>
-      <OurServices />
+      <ServicesHero />
+      <ServicesGrid />
+      <TrustStats />
     </main>
   );
 }

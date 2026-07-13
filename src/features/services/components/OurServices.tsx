@@ -1,5 +1,5 @@
 import { ServiceCards } from "@/features/services/components/ServiceCards";
-import { servicesPageContent } from "@/features/services/data";
+import { homeServiceCards, homeServicesContent } from "@/features/services/data";
 
 export function OurServices() {
   return (
@@ -7,17 +7,17 @@ export function OurServices() {
       <div className="mx-auto max-w-[1400px]">
         <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
           <p className="text-sm font-semibold tracking-[0.14em] text-gold uppercase">
-            — {servicesPageContent.eyebrow}
+            — {homeServicesContent.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-bold text-navy sm:text-4xl lg:text-[2.75rem]">
-            {servicesPageContent.title}
+            {homeServicesContent.title}
           </h2>
           <p className="mt-4 text-base text-muted sm:text-lg">
-            {servicesPageContent.description}
+            {homeServicesContent.description}
           </p>
         </div>
 
-        <ServiceCards />
+        <ServiceCards items={homeServiceCards} />
       </div>
     </section>
   );
