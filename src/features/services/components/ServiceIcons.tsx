@@ -1,4 +1,4 @@
-import type { ServiceCard } from "@/features/services/data";
+import type { ServiceIconName } from "@/features/services/data";
 
 type IconProps = {
   className?: string;
@@ -107,7 +107,7 @@ export function ServiceDetailIcon({
   name,
   className,
 }: {
-  name: ServiceCard["icon"];
+  name: ServiceIconName;
   className?: string;
 }) {
   const Icon = icons[name];

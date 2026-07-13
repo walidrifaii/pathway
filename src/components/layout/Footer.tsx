@@ -94,7 +94,17 @@ export function Footer() {
           <p>
             © {year} {config.appName}. All rights reserved.
           </p>
-          <p className="text-white/45">Travel & Migration experts you can trust.</p>
+          <p>
+            Powered by{" "}
+            <a
+              href="https://www.amctag.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-gold transition-colors hover:text-white"
+            >
+              AMC
+            </a>
+          </p>
         </div>
       </div>
     </footer>

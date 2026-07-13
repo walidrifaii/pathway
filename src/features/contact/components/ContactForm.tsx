@@ -4,15 +4,46 @@ import { useState, type FormEvent } from "react";
 import { contactPageContent } from "@/features/contact/data";
 
 const fieldClass =
-  "w-full rounded-md border border-[#d8dde5] bg-white px-4 py-3 text-base text-navy placeholder:text-[#9aa3b2] outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25";
+  "w-full rounded-md border border-[#d8dde5] bg-white px-4 py-3 text-base text-navy placeholder:text-[#9aa3b2] outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25 disabled:opacity-60";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
+    setStatus("loading");
+    setErrorMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.get("fullName"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          enquiry: formData.get("enquiry"),
+        }),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setStatus("error");
+        setErrorMessage(data.error || "Could not send your message. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage("Could not send your message. Please try again.");
+    }
   }
 
   return (
@@ -37,6 +68,7 @@ export function ContactForm() {
           placeholder="Full Name"
           className={fieldClass}
           autoComplete="name"
+          disabled={status === "loading"}
         />
 
         <label className="sr-only" htmlFor="email">
@@ -50,6 +82,7 @@ export function ContactForm() {
           placeholder="Email Address"
           className={fieldClass}
           autoComplete="email"
+          disabled={status === "loading"}
         />
 
         <label className="sr-only" htmlFor="phone">
@@ -62,6 +95,7 @@ export function ContactForm() {
           placeholder="Phone Number"
           className={fieldClass}
           autoComplete="tel"
+          disabled={status === "loading"}
         />
 
         <label className="sr-only" htmlFor="enquiry">
@@ -74,19 +108,27 @@ export function ContactForm() {
           rows={5}
           placeholder="Your Enquiry"
           className={`${fieldClass} min-h-[140px] resize-y`}
+          disabled={status === "loading"}
         />
       </div>
 
       <button
         type="submit"
-        className="mt-5 w-full rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover"
+        disabled={status === "loading"}
+        className="mt-5 w-full rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {contactPageContent.submitLabel}
+        {status === "loading" ? "Sending..." : contactPageContent.submitLabel}
       </button>
 
-      {submitted ? (
+      {status === "success" ? (
         <p className="mt-4 text-sm text-navy/70" role="status">
-          Thanks — your message has been received. We&apos;ll be in touch soon.
+          Thanks — your message has been sent. We&apos;ll be in touch soon.
+        </p>
+      ) : null}
+
+      {status === "error" ? (
+        <p className="mt-4 text-sm text-red-600" role="alert">
+          {errorMessage}
         </p>
       ) : null}
     </form>

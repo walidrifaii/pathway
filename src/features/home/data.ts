@@ -1,4 +1,5 @@
 import { routes } from "@/constants/routes";
+import { serviceHref } from "@/features/services/data";
 
 export const homeContent = {
   eyebrow: "Your journey to Australia starts here",
@@ -28,42 +29,42 @@ export const heroServices: HeroService[] = [
     id: "skilled",
     title: "Skilled Migration",
     subtitle: "Visas",
-    href: `${routes.services}#skilled`,
+    href: serviceHref("skilled-migration"),
     icon: "skilled",
   },
   {
     id: "family",
     title: "Family & Partner",
     subtitle: "Visas",
-    href: `${routes.services}#family`,
+    href: serviceHref("family-partner"),
     icon: "family",
   },
   {
     id: "employer",
     title: "Employer Sponsored",
     subtitle: "Visas",
-    href: `${routes.services}#employer`,
+    href: serviceHref("employer-sponsored"),
     icon: "employer",
   },
   {
     id: "student",
     title: "Student",
     subtitle: "Visas",
-    href: `${routes.services}#student`,
+    href: serviceHref("student-visas"),
     icon: "student",
   },
   {
     id: "visitor",
     title: "Visitor",
     subtitle: "Visas",
-    href: `${routes.services}#visitor`,
+    href: serviceHref("visitor-visas"),
     icon: "visitor",
   },
   {
     id: "appeals",
     title: "AAT Appeals &",
     subtitle: "Reviews",
-    href: `${routes.services}#appeals`,
+    href: serviceHref("aat-appeals"),
     icon: "appeals",
   },
 ];

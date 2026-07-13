@@ -1,4 +1,5 @@
 import { routes } from "@/constants/routes";
+import { getAllServices, serviceHref } from "@/features/services/data";
 
 export type NavItem = {
   label: string;
@@ -6,19 +7,17 @@ export type NavItem = {
   children?: NavItem[];
 };
 
+const serviceNavChildren = getAllServices().map((service) => ({
+  label: service.navLabel,
+  href: serviceHref(service.slug),
+}));
+
 export const navigation: NavItem[] = [
   { label: "Home", href: routes.home },
   {
     label: "Services",
     href: routes.services,
-    children: [
-      { label: "Skilled Migration", href: `${routes.services}#skilled` },
-      { label: "Employer Sponsored", href: `${routes.services}#employer` },
-      { label: "Family Visas", href: `${routes.services}#family` },
-      { label: "Student Visas", href: `${routes.services}#student` },
-      { label: "Visitor Visas", href: `${routes.services}#visitor` },
-      { label: "AAT Appeals", href: `${routes.services}#appeals` },
-    ],
+    children: serviceNavChildren,
   },
   { label: "About Us", href: routes.about },
   { label: "Contact Us", href: routes.contact },

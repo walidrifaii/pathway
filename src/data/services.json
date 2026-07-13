@@ -1,0 +1,199 @@
+{
+  "page": {
+    "title": "Our Migration & Visa Services",
+    "description": "We offer a wide range of visa and migration services tailored to your individual needs."
+  },
+  "home": {
+    "eyebrow": "What We Offer",
+    "title": "Our Services",
+    "description": "Expert guidance across migration pathways — choose the service that fits your goals."
+  },
+  "services": [
+    {
+      "id": "skilled",
+      "slug": "skilled-migration",
+      "title": "Skilled Migration Visas",
+      "navLabel": "Skilled Migration",
+      "description": "We help skilled professionals obtain permanent residency through various skilled visa programs.",
+      "icon": "skilled",
+      "heroDescription": "Explore pathways to permanent residency through Australia’s skilled migration program, tailored to your occupation, experience, and goals.",
+      "overview": [
+        "Skilled migration is designed for professionals whose occupations are in demand in Australia.",
+        "We assess your eligibility, guide your skills assessment, and prepare a strong Expression of Interest and visa application."
+      ],
+      "includes": [
+        "Eligibility and points-test assessment",
+        "Skills assessment guidance",
+        "Expression of Interest (EOI) preparation",
+        "Visa application lodgement and follow-up",
+        "Advice on state nomination options"
+      ],
+      "whoFor": [
+        "Professionals with occupations on a skilled occupation list",
+        "Applicants seeking permanent residency through skilled pathways",
+        "Candidates who need help with points, English, or skills assessment"
+      ],
+      "process": [
+        "Initial consultation and eligibility review",
+        "Skills assessment and document preparation",
+        "EOI and invitation strategy",
+        "Visa lodgement and case management through to decision"
+      ]
+    },
+    {
+      "id": "employer",
+      "slug": "employer-sponsored",
+      "title": "Employer Sponsored Visas",
+      "navLabel": "Employer Sponsored",
+      "description": "We assist employers and employees with temporary and permanent work visa solutions.",
+      "icon": "employer",
+      "heroDescription": "Support for employers and overseas workers navigating sponsorship, nomination, and work visa pathways to Australia.",
+      "overview": [
+        "Employer sponsored visas allow Australian businesses to fill skill shortages with overseas talent.",
+        "We work with both employers and applicants to meet sponsorship obligations and lodge compliant applications."
+      ],
+      "includes": [
+        "Sponsorship and nomination advice",
+        "Temporary and permanent work visa options",
+        "Labour market testing guidance",
+        "Document checklists and lodgement support",
+        "Ongoing compliance advice for employers"
+      ],
+      "whoFor": [
+        "Australian employers seeking to sponsor overseas workers",
+        "Overseas professionals with a job offer in Australia",
+        "Businesses needing end-to-end sponsorship support"
+      ],
+      "process": [
+        "Assess business and role eligibility",
+        "Prepare sponsorship and nomination",
+        "Lodge the visa application",
+        "Support through to grant and post-grant obligations"
+      ]
+    },
+    {
+      "id": "family",
+      "slug": "family-partner",
+      "title": "Family & Partner Visas",
+      "navLabel": "Family Visas",
+      "description": "Reunite with your loved ones in Australia through partner, parent, and family visas.",
+      "icon": "family",
+      "heroDescription": "Help reuniting partners, parents, and family members through Australia’s family migration pathways.",
+      "overview": [
+        "Family and partner visas help eligible sponsors bring loved ones to Australia to live, work, and build a future together.",
+        "We guide you through relationship evidence, sponsorship requirements, and a carefully prepared application."
+      ],
+      "includes": [
+        "Partner, spouse, and de facto visa advice",
+        "Parent and other family visa options",
+        "Relationship evidence guidance",
+        "Sponsorship and application preparation",
+        "Support through processing and bridging visas"
+      ],
+      "whoFor": [
+        "Partners of Australian citizens or permanent residents",
+        "Families seeking to reunite in Australia",
+        "Sponsors who need clear guidance on evidence and eligibility"
+      ],
+      "process": [
+        "Confirm the right family pathway",
+        "Collect and organise supporting evidence",
+        "Lodge a complete application",
+        "Manage requests for further information until decision"
+      ]
+    },
+    {
+      "id": "student",
+      "slug": "student-visas",
+      "title": "Student Visas",
+      "navLabel": "Student Visas",
+      "description": "We guide students to study in Australia with the right visa and ongoing support.",
+      "icon": "student",
+      "heroDescription": "Guidance for international students applying for an Australian student visa with the right course, funds, and documentation.",
+      "overview": [
+        "A student visa lets you study full-time with an eligible education provider in Australia.",
+        "We help you meet Genuine Temporary Entrant requirements, arrange OSHC, and lodge a complete application."
+      ],
+      "includes": [
+        "Course and provider guidance",
+        "GTE / Genuine Student requirement support",
+        "Financial capacity evidence advice",
+        "OSHC and document checklist",
+        "Visa lodgement and post-lodgement support"
+      ],
+      "whoFor": [
+        "International students planning to study in Australia",
+        "Applicants changing courses or education providers",
+        "Families supporting a student’s visa application"
+      ],
+      "process": [
+        "Confirm course enrolment and CoE",
+        "Prepare GTE and financial documents",
+        "Lodge the student visa",
+        "Support until a decision is made"
+      ]
+    },
+    {
+      "id": "visitor",
+      "slug": "visitor-visas",
+      "title": "Visitor Visas",
+      "navLabel": "Visitor Visas",
+      "description": "Visit Australia for tourism, business, or to meet family and friends.",
+      "icon": "visitor",
+      "heroDescription": "Visitor visa support for tourism, family visits, and short-term business travel to Australia.",
+      "overview": [
+        "Visitor visas are for people who want to visit Australia temporarily for holidays, family, or eligible business activities.",
+        "We help you present a clear travel purpose, strong ties to home, and complete supporting documents."
+      ],
+      "includes": [
+        "Tourist and family visit visa advice",
+        "Short-term business visitor options",
+        "Travel purpose and itinerary guidance",
+        "Financial and home-ties evidence support",
+        "Application lodgement and follow-up"
+      ],
+      "whoFor": [
+        "Tourists planning a holiday in Australia",
+        "People visiting family or friends",
+        "Business travellers attending meetings or conferences"
+      ],
+      "process": [
+        "Confirm the correct visitor stream",
+        "Prepare purpose, funds, and ties evidence",
+        "Lodge the application",
+        "Respond to any further information requests"
+      ]
+    },
+    {
+      "id": "appeals",
+      "slug": "aat-appeals",
+      "title": "AAT Appeals & Reviews",
+      "navLabel": "AAT Appeals",
+      "description": "We provide expert assistance with visa refusals, appeals, and AAT matters.",
+      "icon": "appeals",
+      "heroDescription": "Expert support if your visa was refused — including merits review and appeal strategy before the Administrative Review Tribunal.",
+      "overview": [
+        "A visa refusal does not always mean the end of your pathway. In many cases, you may seek merits review within strict time limits.",
+        "We review the decision, identify appealable issues, and prepare a clear case for review."
+      ],
+      "includes": [
+        "Refusal decision analysis",
+        "Appeal eligibility and deadline advice",
+        "Preparation of review submissions",
+        "Evidence strategy for hearing or papers review",
+        "Representation and case management support"
+      ],
+      "whoFor": [
+        "Applicants whose visa was refused",
+        "People needing urgent advice on review deadlines",
+        "Cases requiring a structured merits review strategy"
+      ],
+      "process": [
+        "Review the refusal and time limits",
+        "Advise on appeal prospects",
+        "Prepare and lodge the review",
+        "Manage the case through to hearing or decision"
+      ]
+    }
+  ]
+}
