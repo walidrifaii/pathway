@@ -1,0 +1,82 @@
+{
+  "posts": [
+    {
+      "id": "skilled-visa-2024",
+      "slug": "big-changes-to-australian-skilled-visa-in-2024",
+      "imageKey": "blogPassport",
+      "category": {
+        "en": "Visa Updates",
+        "ar": "تحديثات التأشيرات"
+      },
+      "title": {
+        "en": "Big Changes to Australian Skilled Visa in 2024",
+        "ar": "تغييرات كبيرة على تأشيرة المهارات الأسترالية في 2024"
+      },
+      "excerpt": {
+        "en": "Stay informed about the latest updates to skill assessment and visa criteria.",
+        "ar": "ابقَ على اطلاع بأحدث تحديثات تقييم المهارات ومعايير التأشيرة."
+      },
+      "date": "2024-05-10",
+      "dateLabel": {
+        "en": "May 10, 2024",
+        "ar": "10 مايو 2024"
+      },
+      "imageAlt": {
+        "en": "Australian flag and passport",
+        "ar": "علم أستراليا وجواز سفر"
+      }
+    },
+    {
+      "id": "visa-approval-tips",
+      "slug": "5-tips-to-improve-your-chances-of-visa-approval",
+      "imageKey": "whyBeach",
+      "category": {
+        "en": "Migration Tips",
+        "ar": "نصائح الهجرة"
+      },
+      "title": {
+        "en": "5 Tips to Improve Your Chances of Visa Approval",
+        "ar": "5 نصائح لتحسين فرص الموافقة على التأشيرة"
+      },
+      "excerpt": {
+        "en": "Simple but effective tips to help you prepare a strong visa application.",
+        "ar": "نصائح بسيطة وفعالة لمساعدتك على إعداد طلب تأشيرة قوي."
+      },
+      "date": "2024-04-28",
+      "dateLabel": {
+        "en": "April 28, 2024",
+        "ar": "28 أبريل 2024"
+      },
+      "imageAlt": {
+        "en": "Australian beach and city skyline",
+        "ar": "شاطئ أسترالي وأفق المدينة"
+      }
+    },
+    {
+      "id": "family-to-australia",
+      "slug": "bringing-your-family-to-australia",
+      "imageKey": "blogFamily",
+      "category": {
+        "en": "Family Visas",
+        "ar": "تأشيرات العائلة"
+      },
+      "title": {
+        "en": "Bringing Your Family to Australia",
+        "ar": "إحضار عائلتك إلى أستراليا"
+      },
+      "excerpt": {
+        "en": "Learn about the different family visa options available.",
+        "ar": "تعرّف على خيارات تأشيرات العائلة المختلفة المتاحة."
+      },
+      "date": "2024-04-15",
+      "dateLabel": {
+        "en": "April 15, 2024",
+        "ar": "15 أبريل 2024"
+      },
+      "imageAlt": {
+        "en": "Family at home in Australia",
+        "ar": "عائلة في المنزل في أستراليا"
+      }
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { getLocale, getTranslations } from "next-intl/server";
 import { images } from "@/constants/images";
-import { aboutContent } from "@/features/about/data";
+import { getAboutParagraphs } from "@/features/about/data";
+import type { Locale } from "@/i18n/routing";
 
 export const aboutLeftPadClass =
   "px-5 sm:px-8 lg:pl-[max(3rem,calc((100vw-1400px)/2+3rem))] lg:pr-10";
@@ -20,7 +22,11 @@ export const aboutIntroGridClass =
 export const aboutMissionGridClass =
   "grid w-full lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]";
 
-export function AboutIntro() {
+export async function AboutIntro() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("about");
+  const paragraphs = getAboutParagraphs(locale);
+
   return (
     <section className="bg-[#f7f8fa]">
       <div className={`${aboutIntroGridClass} items-stretch gap-0`}>
@@ -29,7 +35,7 @@ export function AboutIntro() {
         >
           <div className="max-w-xl">
             <div className="flex flex-col gap-6 sm:gap-7">
-              {aboutContent.paragraphs.map((paragraph) => (
+              {paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
                   className="text-base leading-relaxed text-muted sm:text-lg lg:text-xl"
@@ -41,11 +47,10 @@ export function AboutIntro() {
           </div>
         </div>
 
-        {/* Flush to right edge — no right padding */}
         <div className={aboutImageBoxClass}>
           <Image
             src={images.aboutTeam}
-            alt="RAE Pathways professional team"
+            alt={t("teamAlt")}
             fill
             sizes="(max-width: 1024px) 100vw, 45vw"
             className="object-cover object-center"

@@ -1,5 +1,7 @@
 import servicesJson from "@/data/services.json";
 import { routes } from "@/constants/routes";
+import type { Locale } from "@/i18n/routing";
+import { tLocal, tLocalList, type LocalizedString, type LocalizedStringArray } from "@/lib/localize";
 
 export type ServiceIconName =
   | "skilled"
@@ -8,6 +10,20 @@ export type ServiceIconName =
   | "student"
   | "visitor"
   | "appeals";
+
+type RawService = {
+  id: string;
+  slug: string;
+  icon: ServiceIconName;
+  title: LocalizedString;
+  navLabel: LocalizedString;
+  description: LocalizedString;
+  heroDescription: LocalizedString;
+  overview: LocalizedStringArray;
+  includes: LocalizedStringArray;
+  whoFor: LocalizedStringArray;
+  process: LocalizedStringArray;
+};
 
 export type ServiceDetail = {
   id: string;
@@ -31,30 +47,46 @@ export type ServiceCard = {
   icon: ServiceIconName;
 };
 
-const services = servicesJson.services as ServiceDetail[];
+const services = servicesJson.services as RawService[];
 
-export const servicesPageContent = servicesJson.page;
-export const homeServicesContent = servicesJson.home;
-
-export function getAllServices(): ServiceDetail[] {
-  return services;
+export function getAllServices(locale: Locale = "en"): ServiceDetail[] {
+  return services.map((service) => ({
+    id: service.id,
+    slug: service.slug,
+    icon: service.icon,
+    title: tLocal(service.title, locale),
+    navLabel: tLocal(service.navLabel, locale),
+    description: tLocal(service.description, locale),
+    heroDescription: tLocal(service.heroDescription, locale),
+    overview: tLocalList(service.overview, locale),
+    includes: tLocalList(service.includes, locale),
+    whoFor: tLocalList(service.whoFor, locale),
+    process: tLocalList(service.process, locale),
+  }));
 }
 
-export function getServiceBySlug(slug: string): ServiceDetail | undefined {
-  return services.find((service) => service.slug === slug);
+export function getServiceBySlug(slug: string, locale: Locale = "en"): ServiceDetail | undefined {
+  return getAllServices(locale).find((service) => service.slug === slug);
 }
 
 export function serviceHref(slug: string) {
   return `${routes.services}/${slug}`;
 }
 
-export const serviceCards: ServiceCard[] = services.map((service) => ({
-  id: service.id,
-  title: service.title,
-  description: service.description,
-  href: serviceHref(service.slug),
-  icon: service.icon,
-}));
+export function getServiceCards(locale: Locale = "en"): ServiceCard[] {
+  return getAllServices(locale).map((service) => ({
+    id: service.id,
+    title: service.title,
+    description: service.description,
+    href: serviceHref(service.slug),
+    icon: service.icon,
+  }));
+}
 
-/** Home page shows the first three services */
-export const homeServiceCards = serviceCards.slice(0, 3);
+export function getHomeServiceCards(locale: Locale = "en") {
+  return getServiceCards(locale).slice(0, 3);
+}
+
+/** @deprecated use getServiceCards(locale) */
+export const serviceCards = getServiceCards("en");
+export const homeServiceCards = getHomeServiceCards("en");

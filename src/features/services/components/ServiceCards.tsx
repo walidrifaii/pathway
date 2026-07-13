@@ -1,13 +1,17 @@
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { ServiceCard } from "@/features/services/data";
-import { serviceCards } from "@/features/services/data";
 import { ServiceDetailIcon } from "@/features/services/components/ServiceIcons";
 
 type ServiceCardsProps = {
-  items?: ServiceCard[];
+  items: ServiceCard[];
 };
 
-export function ServiceCards({ items = serviceCards }: ServiceCardsProps) {
+export function ServiceCards({ items }: ServiceCardsProps) {
+  const t = useTranslations("common");
+
   return (
     <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       {items.map((service) => (
@@ -31,7 +35,7 @@ export function ServiceCards({ items = serviceCards }: ServiceCardsProps) {
               href={service.href}
               className="mt-6 inline-flex items-center gap-1.5 text-[0.95rem] font-semibold text-gold transition-colors hover:text-gold-hover"
             >
-              Learn More
+              {t("learnMore")}
               <span aria-hidden="true">→</span>
             </Link>
           </article>

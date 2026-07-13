@@ -1,14 +1,36 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { contactPageContent } from "@/features/contact/data";
+import { useTranslations } from "next-intl";
 import { fieldClassName, formErrorTextClass, formLabelClass } from "@/lib/form-styles";
-import { hasErrors, validateContactFields, type FieldErrors } from "@/lib/validation";
+import {
+  hasErrors,
+  validateContactFields,
+  type FieldErrors,
+  type ValidationMessages,
+} from "@/lib/validation";
 
 export function ContactForm() {
+  const t = useTranslations("contact");
+  const tValidation = useTranslations("validation");
+  const tCommon = useTranslations("common");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
+
+  function validationMessages(): ValidationMessages {
+    return {
+      fullNameRequired: tValidation("fullNameRequired"),
+      fullNameShort: tValidation("fullNameShort"),
+      emailRequired: tValidation("emailRequired"),
+      emailInvalid: tValidation("emailInvalid"),
+      phoneRequired: tValidation("phoneRequired"),
+      phoneInvalid: tValidation("phoneInvalid"),
+      serviceRequired: tValidation("serviceRequired"),
+      messageRequired: tValidation("messageRequired"),
+      messageShort: tValidation("messageShort"),
+    };
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,7 +46,7 @@ export function ContactForm() {
       enquiry: String(formData.get("enquiry") ?? ""),
     };
 
-    const nextErrors = validateContactFields(values);
+    const nextErrors = validateContactFields(values, validationMessages());
     setErrors(nextErrors);
 
     if (hasErrors(nextErrors)) {
@@ -51,7 +73,7 @@ export function ContactForm() {
 
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage(data.error || "Could not send your message. Please try again.");
+        setErrorMessage(data.error || tValidation("sendFailed"));
         return;
       }
 
@@ -60,7 +82,7 @@ export function ContactForm() {
       form.reset();
     } catch {
       setStatus("error");
-      setErrorMessage("Could not send your message. Please try again.");
+      setErrorMessage(tValidation("sendFailed"));
     }
   }
 
@@ -79,14 +101,12 @@ export function ContactForm() {
       className="rounded-xl border border-[#e8ecf1] bg-white p-6 shadow-[0_12px_40px_rgba(15,39,68,0.08)] sm:p-8"
       noValidate
     >
-      <h2 className="font-display text-2xl font-bold text-navy sm:text-[1.75rem]">
-        {contactPageContent.formTitle}
-      </h2>
+      <h2 className="font-display text-2xl font-bold text-navy sm:text-[1.75rem]">{t("formTitle")}</h2>
 
       <div className="mt-6 flex flex-col gap-5">
         <div>
           <label htmlFor="fullName" className={formLabelClass}>
-            Full Name
+            {t("fullName")}
           </label>
           <input
             id="fullName"
@@ -95,7 +115,7 @@ export function ContactForm() {
             autoComplete="name"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.fullName))}
-            placeholder="Full Name"
+            placeholder={t("fullName")}
             onChange={() => clearError("fullName")}
           />
           {errors.fullName ? <p className={formErrorTextClass}>{errors.fullName}</p> : null}
@@ -103,7 +123,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="email" className={formLabelClass}>
-            Email Address
+            {t("emailAddress")}
           </label>
           <input
             id="email"
@@ -112,7 +132,7 @@ export function ContactForm() {
             autoComplete="email"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.email))}
-            placeholder="Email Address"
+            placeholder={t("emailAddress")}
             onChange={() => clearError("email")}
           />
           {errors.email ? <p className={formErrorTextClass}>{errors.email}</p> : null}
@@ -120,7 +140,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="phone" className={formLabelClass}>
-            Phone Number
+            {t("phoneNumber")}
           </label>
           <input
             id="phone"
@@ -129,7 +149,7 @@ export function ContactForm() {
             autoComplete="tel"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.phone))}
-            placeholder="Phone Number"
+            placeholder={t("phoneNumber")}
             onChange={() => clearError("phone")}
           />
           {errors.phone ? <p className={formErrorTextClass}>{errors.phone}</p> : null}
@@ -137,7 +157,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="enquiry" className={formLabelClass}>
-            Your Enquiry
+            {t("enquiry")}
           </label>
           <textarea
             id="enquiry"
@@ -145,7 +165,7 @@ export function ContactForm() {
             rows={5}
             disabled={status === "loading"}
             className={`${fieldClassName(Boolean(errors.enquiry))} min-h-[140px] resize-y`}
-            placeholder="Your Enquiry"
+            placeholder={t("enquiry")}
             onChange={() => clearError("enquiry")}
           />
           {errors.enquiry ? <p className={formErrorTextClass}>{errors.enquiry}</p> : null}
@@ -157,12 +177,12 @@ export function ContactForm() {
         disabled={status === "loading"}
         className="mt-6 w-full rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "loading" ? "Sending..." : contactPageContent.submitLabel}
+        {status === "loading" ? tCommon("sending") : t("submit")}
       </button>
 
       {status === "success" ? (
         <p className="mt-4 text-sm text-navy/70" role="status">
-          Thanks — your message has been sent. We&apos;ll be in touch soon.
+          {t("success")}
         </p>
       ) : null}
 

@@ -2,15 +2,24 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { consultationPageContent } from "@/features/consultation/data";
+import { useTranslations } from "next-intl";
 import { fieldClassName, formErrorTextClass, formLabelClass } from "@/lib/form-styles";
-import { hasErrors, validateConsultationFields, type FieldErrors } from "@/lib/validation";
+import {
+  hasErrors,
+  validateConsultationFields,
+  type FieldErrors,
+  type ValidationMessages,
+} from "@/lib/validation";
 
 type ConsultationFormProps = {
   services: { slug: string; title: string }[];
 };
 
 export function ConsultationForm({ services }: ConsultationFormProps) {
+  const t = useTranslations("consultation");
+  const tContact = useTranslations("contact");
+  const tValidation = useTranslations("validation");
+  const tCommon = useTranslations("common");
   const searchParams = useSearchParams();
   const presetService = searchParams.get("service") ?? "";
 
@@ -28,6 +37,20 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
     setService(resolvedPreset);
   }, [resolvedPreset]);
 
+  function validationMessages(): ValidationMessages {
+    return {
+      fullNameRequired: tValidation("fullNameRequired"),
+      fullNameShort: tValidation("fullNameShort"),
+      emailRequired: tValidation("emailRequired"),
+      emailInvalid: tValidation("emailInvalid"),
+      phoneRequired: tValidation("phoneRequired"),
+      phoneInvalid: tValidation("phoneInvalid"),
+      serviceRequired: tValidation("serviceRequired"),
+      messageRequired: tValidation("messageRequired"),
+      messageShort: tValidation("messageShort"),
+    };
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrorMessage("");
@@ -43,7 +66,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
       message: String(formData.get("message") ?? ""),
     };
 
-    const nextErrors = validateConsultationFields(values);
+    const nextErrors = validateConsultationFields(values, validationMessages());
     setErrors(nextErrors);
 
     if (hasErrors(nextErrors)) {
@@ -74,7 +97,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
 
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage(data.error || "Could not send your request. Please try again.");
+        setErrorMessage(data.error || tValidation("sendFailed"));
         return;
       }
 
@@ -84,7 +107,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
       setService("");
     } catch {
       setStatus("error");
-      setErrorMessage("Could not send your request. Please try again.");
+      setErrorMessage(tValidation("sendFailed"));
     }
   }
 
@@ -103,17 +126,13 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
       className="rounded-xl border border-[#e8ecf1] bg-white p-6 shadow-[0_12px_40px_rgba(15,39,68,0.08)] sm:p-8"
       noValidate
     >
-      <h2 className="font-display text-2xl font-bold text-navy sm:text-[1.75rem]">
-        {consultationPageContent.formTitle}
-      </h2>
-      <p className="mt-2 text-base text-muted">
-        Choose a service and share a short message about your situation.
-      </p>
+      <h2 className="font-display text-2xl font-bold text-navy sm:text-[1.75rem]">{t("formTitle")}</h2>
+      <p className="mt-2 text-base text-muted">{t("helper")}</p>
 
       <div className="mt-6 flex flex-col gap-5">
         <div>
           <label htmlFor="fullName" className={formLabelClass}>
-            Full Name
+            {tContact("fullName")}
           </label>
           <input
             id="fullName"
@@ -122,7 +141,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
             autoComplete="name"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.fullName))}
-            placeholder="Your full name"
+            placeholder={tContact("fullName")}
             onChange={() => clearError("fullName")}
           />
           {errors.fullName ? <p className={formErrorTextClass}>{errors.fullName}</p> : null}
@@ -130,7 +149,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
 
         <div>
           <label htmlFor="email" className={formLabelClass}>
-            Email Address
+            {tContact("emailAddress")}
           </label>
           <input
             id="email"
@@ -139,7 +158,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
             autoComplete="email"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.email))}
-            placeholder="you@example.com"
+            placeholder={tContact("emailAddress")}
             onChange={() => clearError("email")}
           />
           {errors.email ? <p className={formErrorTextClass}>{errors.email}</p> : null}
@@ -147,7 +166,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
 
         <div>
           <label htmlFor="phone" className={formLabelClass}>
-            Phone Number
+            {tContact("phoneNumber")}
           </label>
           <input
             id="phone"
@@ -156,7 +175,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
             autoComplete="tel"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.phone))}
-            placeholder="+61 ..."
+            placeholder={tContact("phoneNumber")}
             onChange={() => clearError("phone")}
           />
           {errors.phone ? <p className={formErrorTextClass}>{errors.phone}</p> : null}
@@ -164,7 +183,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
 
         <div>
           <label htmlFor="service" className={formLabelClass}>
-            Service
+            {t("service")}
           </label>
           <select
             id="service"
@@ -177,7 +196,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
               clearError("service");
             }}
           >
-            <option value="">Select a service</option>
+            <option value="">{t("selectService")}</option>
             {services.map((item) => (
               <option key={item.slug} value={item.slug}>
                 {item.title}
@@ -189,7 +208,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
 
         <div>
           <label htmlFor="message" className={formLabelClass}>
-            Message
+            {t("message")}
           </label>
           <textarea
             id="message"
@@ -197,7 +216,7 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
             rows={5}
             disabled={status === "loading"}
             className={`${fieldClassName(Boolean(errors.message))} min-h-[140px] resize-y`}
-            placeholder="Tell us about your goals, timeline, or questions..."
+            placeholder={t("messagePlaceholder")}
             onChange={() => clearError("message")}
           />
           {errors.message ? <p className={formErrorTextClass}>{errors.message}</p> : null}
@@ -209,12 +228,12 @@ export function ConsultationForm({ services }: ConsultationFormProps) {
         disabled={status === "loading"}
         className="mt-6 w-full rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "loading" ? "Sending..." : consultationPageContent.submitLabel}
+        {status === "loading" ? tCommon("sending") : t("submit")}
       </button>
 
       {status === "success" ? (
         <p className="mt-4 text-sm text-navy/70" role="status">
-          Thanks — your consultation request has been sent. We&apos;ll contact you soon.
+          {t("success")}
         </p>
       ) : null}
 

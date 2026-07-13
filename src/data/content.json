@@ -1,0 +1,50 @@
+{
+  "paragraphs": {
+    "en": [
+      "RAE Pathways is a leading migration consultancy based in Australia, committed to helping individuals, families, and businesses achieve their migration goals.",
+      "With years of experience and in-depth knowledge of Australian migration laws, we provide professional and ethical advice tailored to your unique circumstances."
+    ],
+    "ar": [
+      "RAE Pathways هي شركة استشارات هجرة رائدة في أستراليا، ملتزمة بمساعدة الأفراد والعائلات والشركات على تحقيق أهداف الهجرة.",
+      "بخبرة سنوات ومعرفة عميقة بقوانين الهجرة الأسترالية، نقدم نصيحة مهنية وأخلاقية مصممة لظروفك الخاصة."
+    ]
+  },
+  "mission": {
+    "description": {
+      "en": "To provide reliable and personalized migration solutions that help our clients build a better future in Australia.",
+      "ar": "تقديم حلول هجرة موثوقة ومخصصة تساعد عملاءنا على بناء مستقبل أفضل في أستراليا."
+    }
+  },
+  "values": {
+    "items": {
+      "en": ["Integrity", "Excellence", "Transparency", "Commitment"],
+      "ar": ["النزاهة", "التميز", "الشفافية", "الالتزام"]
+    }
+  },
+  "whyChooseUs": {
+    "items": {
+      "en": [
+        "Registered Australian Migration Agent (MARN)",
+        "Personalized & Honest Advice",
+        "High Success Rate",
+        "End-to-End Support",
+        "Up-to-Date Migration Knowledge"
+      ],
+      "ar": [
+        "وكيل هجرة أسترالي مسجّل (MARN)",
+        "نصيحة شخصية وصادقة",
+        "نسبة نجاح عالية",
+        "دعم من البداية حتى النهاية",
+        "معرفة حديثة بقوانين الهجرة"
+      ]
+    }
+  },
+  "address": {
+    "en": "Level 10, 123 Pitt Street, Sydney NSW 2000, Australia",
+    "ar": "المستوى 10، 123 شارع بيت، سيدني NSW 2000، أستراليا"
+  },
+  "officeHours": {
+    "en": "Monday - Friday 9:00 AM - 5:00 PM (AEST)",
+    "ar": "الاثنين - الجمعة 9:00 صباحاً - 5:00 مساءً (AEST)"
+  }
+}

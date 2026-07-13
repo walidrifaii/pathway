@@ -1,6 +1,8 @@
-import { consultationPageContent } from "@/features/consultation/data";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ConsultationForm } from "@/features/consultation/components/ConsultationForm";
 import { contactInfo } from "@/constants/contact";
+import { getContactOfficeHours } from "@/features/contact/data";
+import type { Locale } from "@/i18n/routing";
 
 type ConsultationSectionProps = {
   services: { slug: string; title: string }[];
@@ -18,23 +20,26 @@ function CheckIcon({ className }: { className?: string }) {
   );
 }
 
-export function ConsultationSection({ services }: ConsultationSectionProps) {
+export async function ConsultationSection({ services }: ConsultationSectionProps) {
+  const t = await getTranslations("consultation");
+  const locale = (await getLocale()) as Locale;
+  const officeHours = getContactOfficeHours(locale);
+  const highlights = [t("highlights.one"), t("highlights.two"), t("highlights.three")];
+
   return (
     <section className="bg-[#f7f8fa] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
       <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-2 lg:gap-14 lg:items-start">
         <div>
-          <p className="text-sm font-semibold tracking-[0.14em] text-gold uppercase">
-            Start your pathway
-          </p>
+          <p className="text-sm font-semibold tracking-[0.14em] text-gold uppercase">{t("eyebrow")}</p>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-            Speak with our migration team
+            {t("heading")}
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-            {consultationPageContent.description}
+            {t("description")}
           </p>
 
           <ul className="mt-8 flex flex-col gap-4">
-            {consultationPageContent.highlights.map((item) => (
+            {highlights.map((item) => (
               <li key={item} className="flex items-start gap-3 text-base text-navy sm:text-lg">
                 <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center text-gold">
                   <CheckIcon className="h-4 w-4" />
@@ -45,7 +50,9 @@ export function ConsultationSection({ services }: ConsultationSectionProps) {
           </ul>
 
           <div className="mt-10 rounded-xl border border-[#e6e8ec] bg-white p-5 sm:p-6">
-            <p className="text-sm font-semibold tracking-wide text-navy/55 uppercase">Prefer to call?</p>
+            <p className="text-sm font-semibold tracking-wide text-navy/55 uppercase">
+              {t("preferCall")}
+            </p>
             <a
               href={contactInfo.phoneHref}
               className="mt-2 block font-display text-xl font-bold text-navy transition-colors hover:text-gold"
@@ -58,7 +65,7 @@ export function ConsultationSection({ services }: ConsultationSectionProps) {
             >
               {contactInfo.email}
             </a>
-            <p className="mt-3 text-sm text-muted">{contactInfo.officeHours}</p>
+            <p className="mt-3 text-sm text-muted">{officeHours}</p>
           </div>
         </div>
 

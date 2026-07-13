@@ -1,9 +1,27 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { images } from "@/constants/images";
-import { homeContent } from "@/features/home/data";
+import { routes } from "@/constants/routes";
 
-export function Hero() {
+export async function Hero() {
+  const t = await getTranslations("home");
+  const locale = await getLocale();
+  const isRtl = locale === "ar";
+
+  // Fade from the text side toward the open image side
+  const sideGradient = isRtl
+    ? "linear-gradient(270deg, rgba(0, 33, 71, 0.78) 0%, rgba(0, 33, 71, 0.65) 45%, rgba(0, 33, 71, 0.28) 75%, rgba(0, 33, 71, 0) 100%)"
+    : "linear-gradient(90deg, rgba(0, 33, 71, 0.78) 0%, rgba(0, 33, 71, 0.65) 45%, rgba(0, 33, 71, 0.28) 75%, rgba(0, 33, 71, 0) 100%)";
+
+  const sideMask = isRtl
+    ? "linear-gradient(270deg, #000 0%, #000 55%, transparent 100%)"
+    : "linear-gradient(90deg, #000 0%, #000 55%, transparent 100%)";
+
+  const softGradient = isRtl
+    ? "linear-gradient(270deg, rgba(0, 33, 71, 0.55) 0%, rgba(0, 33, 71, 0.4) 40%, rgba(0, 33, 71, 0.15) 60%, rgba(0, 33, 71, 0) 75%)"
+    : "linear-gradient(90deg, rgba(0, 33, 71, 0.55) 0%, rgba(0, 33, 71, 0.4) 40%, rgba(0, 33, 71, 0.15) 60%, rgba(0, 33, 71, 0) 75%)";
+
   return (
     <section className="relative isolate min-h-[calc(100dvh-var(--header-height))] overflow-hidden bg-[#002147]">
       <Image
@@ -13,10 +31,11 @@ export function Hero() {
         priority
         placeholder="blur"
         sizes="100vw"
-        className="animate-hero-zoom object-cover object-[68%_center] max-md:object-[72%_30%] sm:object-[70%_center] lg:object-center"
+        className={`animate-hero-zoom object-cover max-md:object-[72%_30%] sm:object-[70%_center] lg:object-center ${
+          isRtl ? "object-[32%_center] max-md:object-[28%_30%]" : "object-[68%_center]"
+        }`}
       />
 
-      {/* Mobile: stronger full-frame fade for readability */}
       <div
         className="absolute inset-0 md:hidden"
         style={{
@@ -26,69 +45,47 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Desktop: left blurred blue fade */}
       <div
-        className="absolute inset-y-0 left-0 hidden w-[65%] backdrop-blur-[10px] md:block"
+        className="absolute inset-y-0 start-0 hidden w-[65%] backdrop-blur-[10px] md:block"
         style={{
-          background:
-            "linear-gradient(90deg, rgba(0, 33, 71, 0.78) 0%, rgba(0, 33, 71, 0.65) 45%, rgba(0, 33, 71, 0.28) 75%, rgba(0, 33, 71, 0) 100%)",
-          WebkitMaskImage:
-            "linear-gradient(90deg, #000 0%, #000 55%, transparent 100%)",
-          maskImage: "linear-gradient(90deg, #000 0%, #000 55%, transparent 100%)",
+          background: sideGradient,
+          WebkitMaskImage: sideMask,
+          maskImage: sideMask,
         }}
         aria-hidden="true"
       />
       <div
         className="absolute inset-0 hidden md:block"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(0, 33, 71, 0.55) 0%, rgba(0, 33, 71, 0.4) 40%, rgba(0, 33, 71, 0.15) 60%, rgba(0, 33, 71, 0) 75%)",
-        }}
+        style={{ background: softGradient }}
         aria-hidden="true"
       />
 
-      <div className="relative flex min-h-[calc(100dvh-var(--header-height))] w-full items-start px-5 pt-10 pb-16 sm:px-8 sm:pt-12 md:px-0 md:pt-[9%] md:pb-20 md:pl-24 lg:pl-44 lg:pt-[10%] xl:pl-52">
+      <div className="relative flex min-h-[calc(100dvh-var(--header-height))] w-full items-start px-5 pt-10 pb-16 sm:px-8 sm:pt-12 md:px-0 md:pt-[9%] md:pb-20 md:ps-24 lg:ps-44 lg:pt-[10%] xl:ps-52">
         <div className="w-full max-w-[42rem] text-white sm:max-w-[48rem] md:w-[58%]">
           <p className="animate-fade-up text-[0.6875rem] font-semibold tracking-[0.18em] text-white uppercase sm:text-[0.8125rem] md:text-base lg:text-[1.0625rem] md:tracking-[0.22em]">
-            {homeContent.eyebrow}
+            {t("eyebrow")}
           </p>
 
-          {/* Mobile: natural wrap / Desktop: two-line break */}
           <h1 className="animate-fade-up animate-delay-1 mt-4 font-display text-[2.35rem] leading-[1.12] font-bold tracking-tight sm:mt-5 sm:text-[3rem] md:mt-6 md:text-[4rem] lg:text-[4.75rem] md:leading-[1.08]">
-            <span className="md:hidden">Migration &amp; Visa Experts You Can Trust</span>
-            <span className="hidden md:inline">
-              Migration &amp; Visa
-              <br />
-              Experts You Can Trust
-            </span>
+            {t("title")}
           </h1>
 
           <p className="animate-fade-up animate-delay-2 mt-5 max-w-[34rem] text-[1rem] leading-[1.65] font-normal text-white/95 sm:mt-6 sm:text-[1.15rem] md:mt-7 md:text-[1.35rem] lg:text-[1.45rem] md:leading-[1.7]">
-            <span className="md:hidden">
-              RAE Pathways is your trusted partner in achieving your Australian dream. We
-              guide you every step of the way.
-            </span>
-            <span className="hidden md:inline">
-              RAE Pathways is your trusted partner in
-              <br />
-              achieving your Australian dream.
-              <br />
-              We guide you every step of the way.
-            </span>
+            {t("description")}
           </p>
 
           <div className="animate-fade-up animate-delay-3 mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:gap-4 md:mt-10 md:w-auto md:flex-row md:items-center md:gap-5">
             <Link
-              href={homeContent.primaryCta.href}
-              className="inline-flex w-full items-center justify-center rounded-md bg-gold px-6 py-3.5 text-[0.95rem] font-semibold text-white transition-all duration-300 hover:bg-gold-hover sm:py-4 sm:text-[1.05rem] md:w-auto md:px-10 md:py-[1.15rem] md:text-[1.125rem]"
+              href={routes.consultation}
+              className="inline-flex w-full items-center justify-center rounded-md bg-gold px-7 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-gold-hover sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
-              {homeContent.primaryCta.label}
+              {t("primaryCta")}
             </Link>
             <Link
-              href={homeContent.secondaryCta.href}
-              className="inline-flex w-full items-center justify-center rounded-md border-2 border-white px-6 py-3.5 text-[0.95rem] font-semibold text-white transition-all duration-300 hover:bg-white/10 sm:py-4 sm:text-[1.05rem] md:w-auto md:px-10 md:py-[1.15rem] md:text-[1.125rem]"
+              href={routes.services}
+              className="inline-flex w-full items-center justify-center rounded-md border border-white/70 bg-white/10 px-7 py-3.5 text-center text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
-              {homeContent.secondaryCta.label}
+              {t("secondaryCta")}
             </Link>
           </div>
         </div>

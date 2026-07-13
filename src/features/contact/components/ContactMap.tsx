@@ -1,12 +1,18 @@
+import { getLocale, getTranslations } from "next-intl/server";
 import { contactInfo } from "@/constants/contact";
-import { contactPageContent } from "@/features/contact/data";
 import { MapPinIcon } from "@/features/contact/components/ContactIcons";
+import { contactMapLabel, getContactAddress } from "@/features/contact/data";
+import type { Locale } from "@/i18n/routing";
 
-export function ContactMap() {
+export async function ContactMap() {
+  const t = await getTranslations("contact");
+  const locale = (await getLocale()) as Locale;
+  const address = getContactAddress(locale);
+
   return (
     <section className="relative h-[360px] w-full overflow-hidden sm:h-[420px] lg:h-[480px]">
       <iframe
-        title={`${contactPageContent.mapLabel} office location`}
+        title={t("mapTitle", { name: contactMapLabel })}
         src={contactInfo.mapEmbedUrl}
         className="absolute inset-0 h-full w-full border-0 grayscale-[15%]"
         loading="lazy"
@@ -19,12 +25,8 @@ export function ContactMap() {
           <div className="flex items-start gap-3">
             <MapPinIcon className="mt-0.5 h-6 w-6 shrink-0 text-[#d64545]" />
             <div>
-              <p className="font-display text-base font-bold text-navy sm:text-lg">
-                {contactPageContent.mapLabel}
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-muted sm:text-[0.95rem]">
-                {contactPageContent.mapAddress}
-              </p>
+              <p className="font-display text-base font-bold text-navy sm:text-lg">{contactMapLabel}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted sm:text-[0.95rem]">{address}</p>
             </div>
           </div>
           <span

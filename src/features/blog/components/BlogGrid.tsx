@@ -1,6 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
-import { blogPostHref, blogPosts } from "@/features/blog/data";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { blogPostHref, getBlogPosts } from "@/features/blog/data";
+import type { Locale } from "@/i18n/routing";
 
 function ArrowIcon({ className }: { className?: string }) {
   return (
@@ -16,12 +18,16 @@ function ArrowIcon({ className }: { className?: string }) {
   );
 }
 
-export function BlogGrid() {
+export async function BlogGrid() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("common");
+  const posts = getBlogPosts(locale);
+
   return (
     <section className="bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
       <div className="mx-auto max-w-[1400px]">
         <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-          {blogPosts.map((post) => (
+          {posts.map((post) => (
             <li key={post.id}>
               <article className="flex h-full flex-col overflow-hidden rounded-xl border border-[#e8ecf1] bg-white shadow-[0_10px_30px_rgba(15,39,68,0.06)] transition-shadow hover:shadow-[0_14px_36px_rgba(15,39,68,0.1)]">
                 <Link href={blogPostHref(post.slug)} className="relative block aspect-[16/10] overflow-hidden">
@@ -50,7 +56,7 @@ export function BlogGrid() {
                       href={blogPostHref(post.slug)}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy transition-colors hover:text-gold"
                     >
-                      Read More
+                      {t("readMore")}
                       <ArrowIcon className="h-3.5 w-3.5" />
                     </Link>
                     <time dateTime={post.date} className="text-sm text-muted">

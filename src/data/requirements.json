@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "id": "skilled",
+      "icon": "skilled",
+      "title": {
+        "en": "Skilled Migration Visas",
+        "ar": "تأشيرات الهجرة المهارية"
+      },
+      "requirements": {
+        "en": [
+          "Occupation listed on a relevant skilled occupation list",
+          "Positive skills assessment from the assessing authority",
+          "Meet the points test threshold (where applicable)",
+          "Competent English language proficiency",
+          "Health and character requirements"
+        ],
+        "ar": [
+          "المهنة مدرجة في قائمة المهارات ذات الصلة",
+          "تقييم مهارات إيجابي من الجهة المختصة",
+          "تلبية حد نظام النقاط (إن وُجد)",
+          "إتقان اللغة الإنجليزية بالمستوى المطلوب",
+          "متطلبات الصحة والسلوك"
+        ]
+      }
+    },
+    {
+      "id": "employer",
+      "icon": "employer",
+      "title": {
+        "en": "Employer Sponsored Visas",
+        "ar": "تأشيرات رعاية صاحب العمل"
+      },
+      "requirements": {
+        "en": [
+          "Approved Australian employer sponsorship",
+          "Genuine full-time position offer",
+          "Relevant skills and qualifications for the role",
+          "Labour market testing completed (where required)",
+          "Health and character requirements"
+        ],
+        "ar": [
+          "رعاية صاحب عمل أسترالي معتمدة",
+          "عرض وظيفة بدوام كامل حقيقي",
+          "مهارات ومؤهلات مناسبة للوظيفة",
+          "إكمال اختبار سوق العمل (إن لزم)",
+          "متطلبات الصحة والسلوك"
+        ]
+      }
+    },
+    {
+      "id": "family",
+      "icon": "family",
+      "title": {
+        "en": "Family & Partner Visas",
+        "ar": "تأشيرات العائلة والشريك"
+      },
+      "requirements": {
+        "en": [
+          "Eligible Australian sponsor (citizen, PR, or eligible NZ citizen)",
+          "Evidence of a genuine and continuing relationship",
+          "Meet relationship / family category criteria",
+          "Health and character requirements",
+          "Supporting identity and relationship documents"
+        ],
+        "ar": [
+          "راعٍ أسترالي مؤهل (مواطن أو مقيم دائم أو مواطن نيوزيلندي مؤهل)",
+          "دليل على علاقة حقيقية ومستمرة",
+          "تلبية معايير فئة العلاقة / العائلة",
+          "متطلبات الصحة والسلوك",
+          "مستندات الهوية والعلاقة الداعمة"
+        ]
+      }
+    },
+    {
+      "id": "student",
+      "icon": "student",
+      "title": {
+        "en": "Student Visas",
+        "ar": "تأشيرات الطلاب"
+      },
+      "requirements": {
+        "en": [
+          "Confirmation of Enrolment (CoE) from a registered provider",
+          "Genuine Temporary Entrant (GTE) requirement",
+          "Sufficient funds for tuition and living costs",
+          "Overseas Student Health Cover (OSHC)",
+          "English language and academic entry requirements"
+        ],
+        "ar": [
+          "شهادة التحاق (CoE) من مزود مسجّل",
+          "متطلب الدخول المؤقت الحقيقي (GTE)",
+          "تمويل كافٍ للرسوم وتكاليف المعيشة",
+          "تغطية صحية للطلاب الدوليين (OSHC)",
+          "متطلبات اللغة الإنجليزية والقبول الأكاديمي"
+        ]
+      }
+    },
+    {
+      "id": "visitor",
+      "icon": "visitor",
+      "title": {
+        "en": "Visitor Visas",
+        "ar": "تأشيرات الزيارة"
+      },
+      "requirements": {
+        "en": [
+          "Genuine temporary stay intention",
+          "Sufficient funds for the visit",
+          "Ties to home country (employment, family, or assets)",
+          "Valid travel document / passport",
+          "Health and character requirements (where applicable)"
+        ],
+        "ar": [
+          "نية إقامة مؤقتة حقيقية",
+          "تمويل كافٍ للزيارة",
+          "روابط بالوطن (عمل أو عائلة أو أصول)",
+          "وثيقة سفر / جواز صالح",
+          "متطلبات الصحة والسلوك (إن وُجدت)"
+        ]
+      }
+    }
+  ]
+}

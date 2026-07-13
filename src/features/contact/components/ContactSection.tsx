@@ -1,3 +1,4 @@
+import { getLocale, getTranslations } from "next-intl/server";
 import { ContactForm } from "@/features/contact/components/ContactForm";
 import {
   AddressIcon,
@@ -5,7 +6,8 @@ import {
   HoursIcon,
   PhoneIcon,
 } from "@/features/contact/components/ContactIcons";
-import { contactDetails, contactPageContent } from "@/features/contact/data";
+import { getContactDetails } from "@/features/contact/data";
+import type { Locale } from "@/i18n/routing";
 
 const icons = {
   phone: PhoneIcon,
@@ -14,20 +16,24 @@ const icons = {
   hours: HoursIcon,
 } as const;
 
-export function ContactSection() {
+export async function ContactSection() {
+  const t = await getTranslations("contact");
+  const locale = (await getLocale()) as Locale;
+  const details = getContactDetails(locale);
+
   return (
     <section className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
       <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
         <div>
           <h2 className="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-[2.75rem]">
-            {contactPageContent.title}
+            {t("getInTouch")}
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
-            {contactPageContent.description}
+            {t("description")}
           </p>
 
           <ul className="mt-10 flex flex-col gap-7">
-            {contactDetails.map((detail) => {
+            {details.map((detail) => {
               const Icon = icons[detail.icon];
               const value = detail.href ? (
                 <a
@@ -47,7 +53,7 @@ export function ContactSection() {
                   </span>
                   <div>
                     <p className="text-sm font-semibold tracking-wide text-navy/55 uppercase">
-                      {detail.label}
+                      {t(detail.labelKey)}
                     </p>
                     <div className="mt-1 max-w-sm leading-relaxed">{value}</div>
                   </div>

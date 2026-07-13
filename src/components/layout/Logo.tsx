@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { config } from "@/constants/config";
 import { images } from "@/constants/images";
 import { routes } from "@/constants/routes";

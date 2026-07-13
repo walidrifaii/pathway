@@ -1,4 +1,6 @@
-import { trustStats } from "@/features/home/data";
+"use client";
+
+import { useTranslations } from "next-intl";
 
 type IconProps = {
   className?: string;
@@ -66,20 +68,22 @@ function MarnIcon({ className }: IconProps) {
   );
 }
 
-const icons = {
-  experience: ExperienceIcon,
-  visas: VisasIcon,
-  satisfaction: SatisfactionIcon,
-  marn: MarnIcon,
-} as const;
+const stats = [
+  { id: "experience", value: "10+", labelKey: "years", icon: ExperienceIcon },
+  { id: "cases", value: "1,000+", labelKey: "cases", icon: VisasIcon },
+  { id: "satisfaction", value: "99%", labelKey: "satisfaction", icon: SatisfactionIcon },
+  { id: "marn", value: "MARN", labelKey: "marn", icon: MarnIcon },
+] as const;
 
 export function TrustStats() {
+  const t = useTranslations("trust");
+
   return (
     <section className="border-b-4 border-gold bg-[#002147] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
       <div className="mx-auto max-w-[1400px]">
         <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-6">
-          {trustStats.map((stat) => {
-            const Icon = icons[stat.icon];
+          {stats.map((stat) => {
+            const Icon = stat.icon;
 
             return (
               <li key={stat.id} className="flex items-center gap-4 sm:justify-center lg:justify-start">
@@ -88,7 +92,7 @@ export function TrustStats() {
                   <p className="font-display text-2xl font-bold tracking-tight text-white sm:text-[1.75rem]">
                     {stat.value}
                   </p>
-                  <p className="mt-0.5 text-sm text-white/85 sm:text-[0.95rem]">{stat.label}</p>
+                  <p className="mt-0.5 text-sm text-white/85 sm:text-[0.95rem]">{t(stat.labelKey)}</p>
                 </div>
               </li>
             );

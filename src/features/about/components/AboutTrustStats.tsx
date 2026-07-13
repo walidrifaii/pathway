@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { aboutTrustStats } from "@/features/about/data";
 
 type IconProps = {
@@ -81,6 +84,8 @@ const icons = {
 } as const;
 
 export function AboutTrustStats() {
+  const t = useTranslations("trust");
+
   return (
     <section className="border-t border-[#e6e8ec] bg-white px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
       <div className="mx-auto max-w-[1400px]">
@@ -98,7 +103,7 @@ export function AboutTrustStats() {
                   <p className="font-display text-2xl font-bold tracking-tight text-navy sm:text-[1.75rem]">
                     {stat.value}
                   </p>
-                  <p className="mt-0.5 text-sm text-navy/80 sm:text-[0.95rem]">{stat.label}</p>
+                  <p className="mt-0.5 text-sm text-navy/80 sm:text-[0.95rem]">{t(stat.labelKey)}</p>
                 </div>
               </li>
             );

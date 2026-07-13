@@ -1,5 +1,7 @@
+import { getLocale, getTranslations } from "next-intl/server";
 import { RequirementsAccordion } from "@/features/requirements/components/RequirementsAccordion";
-import { requirementsPageContent } from "@/features/requirements/data";
+import { getRequirementItems } from "@/features/requirements/data";
+import type { Locale } from "@/i18n/routing";
 
 function InfoIcon({ className }: { className?: string }) {
   return (
@@ -11,20 +13,22 @@ function InfoIcon({ className }: { className?: string }) {
   );
 }
 
-export function RequirementsContent() {
+export async function RequirementsContent() {
+  const t = await getTranslations("requirements");
+  const locale = (await getLocale()) as Locale;
+  const items = getRequirementItems(locale);
+
   return (
     <section className="bg-[#f7f8fa] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
       <div className="mx-auto max-w-[960px]">
-        <RequirementsAccordion />
+        <RequirementsAccordion items={items} />
 
         <div className="mt-10 flex items-start gap-4 sm:mt-12 sm:gap-5">
           <InfoIcon className="mt-0.5 h-11 w-11 shrink-0 text-gold sm:h-12 sm:w-12" />
           <div>
-            <h2 className="font-display text-xl font-bold text-navy sm:text-2xl">
-              {requirementsPageContent.note.title}
-            </h2>
+            <h2 className="font-display text-xl font-bold text-navy sm:text-2xl">{t("noteTitle")}</h2>
             <p className="mt-2 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              {requirementsPageContent.note.body}
+              {t("noteBody")}
             </p>
           </div>
         </div>

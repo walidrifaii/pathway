@@ -2,24 +2,25 @@
 
 import { useState } from "react";
 import { ServiceDetailIcon } from "@/features/services/components/ServiceIcons";
-import { requirementItems } from "@/features/requirements/data";
+import type { RequirementItem } from "@/features/requirements/data";
 
-export function RequirementsAccordion() {
+type RequirementsAccordionProps = {
+  items: RequirementItem[];
+};
+
+export function RequirementsAccordion({ items }: RequirementsAccordionProps) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-[#e6e8ec] bg-white shadow-[0_12px_40px_rgba(15,39,68,0.06)]">
       <ul>
-        {requirementItems.map((item, index) => {
+        {items.map((item, index) => {
           const isOpen = openId === item.id;
           const panelId = `requirement-panel-${item.id}`;
           const buttonId = `requirement-button-${item.id}`;
 
           return (
-            <li
-              key={item.id}
-              className={index > 0 ? "border-t border-[#e6e8ec]" : undefined}
-            >
+            <li key={item.id} className={index > 0 ? "border-t border-[#e6e8ec]" : undefined}>
               <button
                 id={buttonId}
                 type="button"

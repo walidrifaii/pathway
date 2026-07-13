@@ -1,6 +1,6 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { images } from "@/constants/images";
-import { whyAustraliaContent } from "@/features/home/data";
 
 function CheckIcon() {
   return (
@@ -34,26 +34,26 @@ const gallery = [
   },
 ] as const;
 
-export function WhyAustralia() {
+export async function WhyAustralia() {
+  const t = await getTranslations("home");
+  const features = [t("whyFeatures.safe"), t("whyFeatures.education"), t("whyFeatures.economy"), t("whyFeatures.pr")];
+
   return (
     <section className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
       <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-        {/* Left copy */}
-        <div className="max-w-xl lg:pl-4 xl:pl-8">
+        <div className="max-w-xl lg:ps-4 xl:ps-8">
           <p className="text-sm font-semibold tracking-[0.14em] text-gold uppercase sm:text-[0.95rem]">
-            — {whyAustraliaContent.eyebrow}
+            — {t("whyEyebrow")}
           </p>
 
           <h2 className="mt-4 font-display text-[2.25rem] leading-tight font-bold text-navy sm:text-4xl lg:text-[2.75rem]">
-            {whyAustraliaContent.title}
+            {t("whyTitle")}
           </h2>
 
-          <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-            {whyAustraliaContent.description}
-          </p>
+          <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{t("whyDescription")}</p>
 
           <ul className="mt-8 flex flex-col gap-4 sm:mt-10 sm:gap-5">
-            {whyAustraliaContent.features.map((feature) => (
+            {features.map((feature) => (
               <li key={feature} className="flex items-start gap-3.5">
                 <CheckIcon />
                 <span className="pt-0.5 text-base font-medium text-navy sm:text-lg">{feature}</span>
@@ -62,10 +62,12 @@ export function WhyAustralia() {
           </ul>
         </div>
 
-        {/* Right image trio */}
-        <div className="grid h-[286px] grid-cols-3 gap-2.5 sm:h-[468px] sm:gap-4 md:h-[546px] lg:h-[624px] xl:h-[676px]">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
           {gallery.map((item) => (
-            <div key={item.alt} className="relative overflow-hidden rounded-2xl">
+            <div
+              key={item.alt}
+              className="relative aspect-[2/3.6] overflow-hidden rounded-[1.25rem] sm:aspect-[2/3.8] sm:rounded-[1.5rem] lg:aspect-[2/4]"
+            >
               <Image
                 src={item.src}
                 alt={item.alt}

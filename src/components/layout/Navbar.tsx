@@ -1,12 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "@/components/layout/Logo";
-import { navigation, type NavItem } from "@/data/navigation";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { routes } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+
+type NavItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
 
 function ChevronDown({ className }: { className?: string }) {
   return (
@@ -41,7 +47,7 @@ function DesktopNavLink({ item, pathname }: { item: NavItem; pathname: string })
           {item.label}
           <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
         </Link>
-        <div className="invisible absolute left-1/2 top-full z-50 w-52 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div className="invisible absolute start-1/2 top-full z-50 w-52 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 rtl:translate-x-1/2">
           <ul className="overflow-hidden rounded-lg border border-navy/10 bg-white py-2 shadow-[0_12px_40px_rgba(15,39,68,0.12)]">
             {item.children.map((child) => (
               <li key={child.href}>
@@ -71,7 +77,7 @@ function DesktopNavLink({ item, pathname }: { item: NavItem; pathname: string })
       {item.label}
       <span
         className={cn(
-          "absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-gold transition-transform duration-300",
+          "absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-gold transition-transform duration-300 rtl:origin-right",
           active ? "scale-x-100" : "scale-x-0",
         )}
       />
@@ -80,9 +86,30 @@ function DesktopNavLink({ item, pathname }: { item: NavItem; pathname: string })
 }
 
 export function Navbar() {
+  const t = useTranslations("nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+
+  const navigation: NavItem[] = [
+    { label: t("home"), href: routes.home },
+    {
+      label: t("services"),
+      href: routes.services,
+      children: [
+        { label: t("skilledMigration"), href: `${routes.services}/skilled-migration` },
+        { label: t("employerSponsored"), href: `${routes.services}/employer-sponsored` },
+        { label: t("familyVisas"), href: `${routes.services}/family-partner` },
+        { label: t("studentVisas"), href: `${routes.services}/student-visas` },
+        { label: t("visitorVisas"), href: `${routes.services}/visitor-visas` },
+        { label: t("aatAppeals"), href: `${routes.services}/aat-appeals` },
+      ],
+    },
+    { label: t("about"), href: routes.about },
+    { label: t("contact"), href: routes.contact },
+    { label: t("requirements"), href: routes.requirements },
+    { label: t("blog"), href: routes.blog },
+  ];
 
   useEffect(() => {
     setOpen(false);
@@ -101,8 +128,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-[var(--header-height)] max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-10">
         <Logo className="shrink-0" />
 
-        {/* Links + CTA grouped on the right */}
-        <div className="flex items-center gap-6 xl:gap-8">
+        <div className="flex items-center gap-4 xl:gap-6">
           <ul className="hidden items-center gap-6 xl:gap-7 lg:flex">
             {navigation.map((item) => (
               <li key={item.href}>
@@ -111,11 +137,13 @@ export function Navbar() {
             ))}
           </ul>
 
+          <LanguageSwitcher className="hidden sm:inline-flex" />
+
           <Link
             href={routes.consultation}
             className="hidden rounded-lg bg-gold px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-gold-hover sm:inline-flex"
           >
-            Book a Consultation
+            {t("bookConsultation")}
           </Link>
 
           <button
@@ -123,10 +151,10 @@ export function Navbar() {
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy transition-colors hover:bg-navy/[0.04] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("closeMenu") : t("openMenu")}
             onClick={() => setOpen((value) => !value)}
           >
-            <span className="sr-only">Menu</span>
+            <span className="sr-only">{t("menu")}</span>
             <span className="relative block h-4 w-5">
               <span
                 className={cn(
@@ -184,7 +212,7 @@ export function Navbar() {
                   </button>
                   <ul
                     className={cn(
-                      "overflow-hidden pl-3 transition-[max-height,opacity] duration-300",
+                      "overflow-hidden ps-3 transition-[max-height,opacity] duration-300",
                       servicesOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
                     )}
                   >
@@ -220,13 +248,16 @@ export function Navbar() {
               </li>
             );
           })}
+          <li className="px-3 py-2">
+            <LanguageSwitcher variant="mobile" />
+          </li>
           <li className="pt-2 sm:hidden">
             <Link
               href={routes.consultation}
               className="flex w-full items-center justify-center rounded-lg bg-gold px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-hover"
               onClick={() => setOpen(false)}
             >
-              Book a Consultation
+              {t("bookConsultation")}
             </Link>
           </li>
         </ul>

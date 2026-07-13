@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "titleSuffix": "Travel & Migration",
+    "siteDescription": "RAE Pathways is your trusted partner in achieving your Australian dream. We guide you every step of the way."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "requirements": "Requirements",
+    "blog": "Blog",
+    "bookConsultation": "Book a Consultation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "skilledMigration": "Skilled Migration",
+    "employerSponsored": "Employer Sponsored",
+    "familyVisas": "Family Visas",
+    "studentVisas": "Student Visas",
+    "visitorVisas": "Visitor Visas",
+    "aatAppeals": "AAT Appeals"
+  },
+  "footer": {
+    "company": "Company",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "poweredBy": "Powered by"
+  },
+  "common": {
+    "home": "Home",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "sending": "Sending...",
+    "allServices": "All Services",
+    "loadingForm": "Loading form..."
+  },
+  "home": {
+    "eyebrow": "Your journey to Australia starts here",
+    "title": "Migration & Visa Experts You Can Trust",
+    "description": "RAE Pathways is your trusted partner in achieving your Australian dream. We guide you every step of the way.",
+    "primaryCta": "Book a Consultation",
+    "secondaryCta": "Explore Services",
+    "servicesEyebrow": "What We Offer",
+    "servicesTitle": "Our Services",
+    "servicesDescription": "Expert guidance across migration pathways — choose the service that fits your goals.",
+    "whyEyebrow": "Why Australia?",
+    "whyTitle": "A Better Future Awaits",
+    "whyDescription": "Australia offers a high quality of life, world-class education, excellent healthcare, and endless opportunities.",
+    "whyFeatures": {
+      "safe": "Safe & Multicultural Society",
+      "education": "World-Class Education",
+      "economy": "Strong Economy",
+      "pr": "Pathway to Permanent Residency"
+    }
+  },
+  "trust": {
+    "years": "Years Experience",
+    "cases": "Successful Cases",
+    "satisfaction": "Client Satisfaction",
+    "marn": "Registered Agent"
+  },
+  "services": {
+    "pageTitle": "Our Migration & Visa Services",
+    "pageDescription": "We offer a wide range of visa and migration services tailored to your individual needs.",
+    "breadcrumb": "Services",
+    "overview": "Overview",
+    "includes": "What's Included",
+    "whoFor": "Who It's For",
+    "process": "Our Process",
+    "readyTitle": "Ready to get started?",
+    "readyBody": "Book a consultation and we'll assess your options for {service}.",
+    "bookCta": "Book a Consultation"
+  },
+  "about": {
+    "title": "About RAE Pathways",
+    "breadcrumb": "About Us",
+    "mission": "Our Mission",
+    "values": "Our Values",
+    "whyChoose": "Why Choose Us?",
+    "teamAlt": "RAE Pathways professional team"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "breadcrumb": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "description": "We're here to help you with your migration journey. Contact us today for expert advice.",
+    "formTitle": "Send Us a Message",
+    "submit": "Send Message",
+    "success": "Thanks — your message has been sent. We'll be in touch soon.",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "hours": "Office Hours",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "enquiry": "Your Enquiry",
+    "mapTitle": "{name} office location"
+  },
+  "consultation": {
+    "title": "Book a Consultation",
+    "breadcrumb": "Consultation",
+    "description": "Tell us about your goals and the service you need. Our migration team will review your details and get back to you.",
+    "formTitle": "Consultation Request",
+    "submit": "Book Consultation",
+    "eyebrow": "Start your pathway",
+    "heading": "Speak with our migration team",
+    "preferCall": "Prefer to call?",
+    "selectService": "Select a service",
+    "service": "Service",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your goals, timeline, or questions...",
+    "helper": "Choose a service and share a short message about your situation.",
+    "success": "Thanks — your consultation request has been sent. We'll contact you soon.",
+    "highlights": {
+      "one": "Registered Australian Migration Agent guidance",
+      "two": "Personalised advice for your visa pathway",
+      "three": "Clear next steps after your enquiry"
+    }
+  },
+  "requirements": {
+    "title": "Visa Requirements",
+    "breadcrumb": "Requirements",
+    "description": "Each visa has specific eligibility criteria and documentation. Below are the general requirements for common visa types.",
+    "noteTitle": "Important Note",
+    "noteBody": "Requirements may vary depending on your individual circumstances and the visa subclass. Please contact us for a detailed assessment of your case.",
+    "imageAlt": "Melbourne city skyline"
+  },
+  "blog": {
+    "title": "Latest News & Insights",
+    "breadcrumb": "Blog",
+    "description": "Stay updated with the latest migration news, visa updates, and helpful tips for your Australian journey.",
+    "back": "Back to Blog",
+    "advice": "For personalised advice on your situation, get in touch with our registered migration team. We'll help you understand the latest requirements and the pathway that fits your goals."
+  },
+  "validation": {
+    "fullNameRequired": "Full name is required.",
+    "fullNameShort": "Enter your full name.",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "phoneRequired": "Phone is required.",
+    "phoneInvalid": "Enter a valid phone number.",
+    "serviceRequired": "Please select a service.",
+    "messageRequired": "Message is required.",
+    "messageShort": "Please write at least 10 characters.",
+    "sendFailed": "Could not send your message. Please try again."
+  },
+  "heroServices": {
+    "skilledTitle": "Skilled Migration",
+    "skilledSubtitle": "Visas",
+    "familyTitle": "Family & Partner",
+    "familySubtitle": "Visas",
+    "employerTitle": "Employer Sponsored",
+    "employerSubtitle": "Visas",
+    "studentTitle": "Student",
+    "studentSubtitle": "Visas",
+    "visitorTitle": "Visitor",
+    "visitorSubtitle": "Visas",
+    "appealsTitle": "AAT Appeals &",
+    "appealsSubtitle": "Reviews"
+  }
+}

@@ -1,26 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/layout/PageHero";
-import { blogPageContent, blogPosts, getBlogPost } from "@/features/blog/data";
+import { getBlogPost, getBlogSlugs } from "@/features/blog/data";
 import { config } from "@/constants/config";
 import { routes } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 
 type BlogPostPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return routing.locales.flatMap((locale) =>
+    getBlogSlugs().map((slug) => ({ locale, slug })),
+  );
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  const post = getBlogPost(slug, locale as Locale);
 
   if (!post) {
-    return { title: `Blog | ${config.appName}` };
+    return { title: `${t("breadcrumb")} | ${config.appName}` };
   }
 
   return {
@@ -30,8 +36,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("blog");
+  const post = getBlogPost(slug, locale as Locale);
 
   if (!post) {
     notFound();
@@ -39,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main>
-      <PageHero title={post.title} breadcrumbLabel={blogPageContent.breadcrumbLabel} />
+      <PageHero title={post.title} breadcrumbLabel={t("breadcrumb")} />
 
       <article className="bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
         <div className="mx-auto max-w-[800px]">
@@ -63,18 +71,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="mt-8 space-y-5 text-base leading-relaxed text-muted sm:text-lg">
             <p>{post.excerpt}</p>
-            <p>
-              For personalised advice on your situation, get in touch with our registered migration
-              team. We&apos;ll help you understand the latest requirements and the pathway that fits
-              your goals.
-            </p>
+            <p>{t("advice")}</p>
           </div>
 
           <Link
             href={routes.blog}
             className="mt-10 inline-flex text-sm font-semibold text-navy transition-colors hover:text-gold"
           >
-            ← Back to Blog
+            ← {t("back")}
           </Link>
         </div>
       </article>

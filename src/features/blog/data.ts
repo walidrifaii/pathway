@@ -1,13 +1,23 @@
 import type { StaticImageData } from "next/image";
+import blogJson from "@/data/blog.json";
 import { images } from "@/constants/images";
 import { routes } from "@/constants/routes";
+import type { Locale } from "@/i18n/routing";
+import { tLocal, type LocalizedString } from "@/lib/localize";
 
-export const blogPageContent = {
-  title: "Latest News & Insights",
-  breadcrumbLabel: "Blog",
-  description:
-    "Stay updated with the latest migration news, visa updates, and helpful tips for your Australian journey.",
-} as const;
+type BlogImageKey = "blogPassport" | "whyBeach" | "blogFamily";
+
+type RawBlogPost = {
+  id: string;
+  slug: string;
+  imageKey: BlogImageKey;
+  category: LocalizedString;
+  title: LocalizedString;
+  excerpt: LocalizedString;
+  date: string;
+  dateLabel: LocalizedString;
+  imageAlt: LocalizedString;
+};
 
 export type BlogPost = {
   id: string;
@@ -21,46 +31,34 @@ export type BlogPost = {
   imageAlt: string;
 };
 
-export const blogPosts: BlogPost[] = [
-  {
-    id: "skilled-visa-2024",
-    slug: "big-changes-to-australian-skilled-visa-in-2024",
-    category: "Visa Updates",
-    title: "Big Changes to Australian Skilled Visa in 2024",
-    excerpt:
-      "Stay informed about the latest updates to skill assessment and visa criteria.",
-    date: "2024-05-10",
-    dateLabel: "May 10, 2024",
-    image: images.blogPassport,
-    imageAlt: "Australian flag and passport",
-  },
-  {
-    id: "visa-approval-tips",
-    slug: "5-tips-to-improve-your-chances-of-visa-approval",
-    category: "Migration Tips",
-    title: "5 Tips to Improve Your Chances of Visa Approval",
-    excerpt:
-      "Simple but effective tips to help you prepare a strong visa application.",
-    date: "2024-04-28",
-    dateLabel: "April 28, 2024",
-    image: images.whyAustralia.beach,
-    imageAlt: "Australian beach and city skyline",
-  },
-  {
-    id: "family-to-australia",
-    slug: "bringing-your-family-to-australia",
-    category: "Family Visas",
-    title: "Bringing Your Family to Australia",
-    excerpt: "Learn about the different family visa options available.",
-    date: "2024-04-15",
-    dateLabel: "April 15, 2024",
-    image: images.blogFamily,
-    imageAlt: "Family at home in Australia",
-  },
-];
+const imageByKey: Record<BlogImageKey, StaticImageData> = {
+  blogPassport: images.blogPassport,
+  whyBeach: images.whyAustralia.beach,
+  blogFamily: images.blogFamily,
+};
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+const posts = blogJson.posts as RawBlogPost[];
+
+export function getBlogPosts(locale: Locale): BlogPost[] {
+  return posts.map((post) => ({
+    id: post.id,
+    slug: post.slug,
+    category: tLocal(post.category, locale),
+    title: tLocal(post.title, locale),
+    excerpt: tLocal(post.excerpt, locale),
+    date: post.date,
+    dateLabel: tLocal(post.dateLabel, locale),
+    image: imageByKey[post.imageKey],
+    imageAlt: tLocal(post.imageAlt, locale),
+  }));
+}
+
+export function getBlogPost(slug: string, locale: Locale): BlogPost | undefined {
+  return getBlogPosts(locale).find((post) => post.slug === slug);
+}
+
+export function getBlogSlugs() {
+  return posts.map((post) => post.slug);
 }
 
 export function blogPostHref(slug: string) {

@@ -1,199 +1,442 @@
 {
-  "page": {
-    "title": "Our Migration & Visa Services",
-    "description": "We offer a wide range of visa and migration services tailored to your individual needs."
-  },
-  "home": {
-    "eyebrow": "What We Offer",
-    "title": "Our Services",
-    "description": "Expert guidance across migration pathways — choose the service that fits your goals."
-  },
   "services": [
     {
       "id": "skilled",
       "slug": "skilled-migration",
-      "title": "Skilled Migration Visas",
-      "navLabel": "Skilled Migration",
-      "description": "We help skilled professionals obtain permanent residency through various skilled visa programs.",
       "icon": "skilled",
-      "heroDescription": "Explore pathways to permanent residency through Australia’s skilled migration program, tailored to your occupation, experience, and goals.",
-      "overview": [
-        "Skilled migration is designed for professionals whose occupations are in demand in Australia.",
-        "We assess your eligibility, guide your skills assessment, and prepare a strong Expression of Interest and visa application."
-      ],
-      "includes": [
-        "Eligibility and points-test assessment",
-        "Skills assessment guidance",
-        "Expression of Interest (EOI) preparation",
-        "Visa application lodgement and follow-up",
-        "Advice on state nomination options"
-      ],
-      "whoFor": [
-        "Professionals with occupations on a skilled occupation list",
-        "Applicants seeking permanent residency through skilled pathways",
-        "Candidates who need help with points, English, or skills assessment"
-      ],
-      "process": [
-        "Initial consultation and eligibility review",
-        "Skills assessment and document preparation",
-        "EOI and invitation strategy",
-        "Visa lodgement and case management through to decision"
-      ]
+      "title": {
+        "en": "Skilled Migration Visas",
+        "ar": "تأشيرات الهجرة المهارية"
+      },
+      "navLabel": {
+        "en": "Skilled Migration",
+        "ar": "الهجرة المهارية"
+      },
+      "description": {
+        "en": "We help skilled professionals obtain permanent residency through various skilled visa programs.",
+        "ar": "نساعد المهنيين المهرة في الحصول على الإقامة الدائمة عبر برامج التأشيرات المهارية المختلفة."
+      },
+      "heroDescription": {
+        "en": "Explore pathways to permanent residency through Australia’s skilled migration program, tailored to your occupation, experience, and goals.",
+        "ar": "استكشف مسارات الإقامة الدائمة عبر برنامج الهجرة المهارية في أستراليا، بما يناسب مهنتك وخبرتك وأهدافك."
+      },
+      "overview": {
+        "en": [
+          "Skilled migration is designed for professionals whose occupations are in demand in Australia.",
+          "We assess your eligibility, guide your skills assessment, and prepare a strong Expression of Interest and visa application."
+        ],
+        "ar": [
+          "صُممت الهجرة المهارية للمهنيين الذين تكون مهنهم مطلوبة في أستراليا.",
+          "نقيّم أهليتك ونرشدك في تقييم المهارات ونعدّ تعبيراً قوياً عن الاهتمام وطلب التأشيرة."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Eligibility and points-test assessment",
+          "Skills assessment guidance",
+          "Expression of Interest (EOI) preparation",
+          "Visa application lodgement and follow-up",
+          "Advice on state nomination options"
+        ],
+        "ar": [
+          "تقييم الأهلية ونظام النقاط",
+          "إرشاد تقييم المهارات",
+          "إعداد تعبير الاهتمام (EOI)",
+          "تقديم طلب التأشيرة والمتابعة",
+          "نصيحة حول خيارات ترشيح الولايات"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "Professionals with occupations on a skilled occupation list",
+          "Applicants seeking permanent residency through skilled pathways",
+          "Candidates who need help with points, English, or skills assessment"
+        ],
+        "ar": [
+          "المهنيون المدرجة مهنهم في قوائم المهارات",
+          "المتقدمون الساعون للإقامة الدائمة عبر المسارات المهارية",
+          "من يحتاج مساعدة في النقاط أو الإنجليزية أو تقييم المهارات"
+        ]
+      },
+      "process": {
+        "en": [
+          "Initial consultation and eligibility review",
+          "Skills assessment and document preparation",
+          "EOI and invitation strategy",
+          "Visa lodgement and case management through to decision"
+        ],
+        "ar": [
+          "استشارة أولية ومراجعة الأهلية",
+          "تقييم المهارات وإعداد المستندات",
+          "استراتيجية EOI والدعوة",
+          "تقديم التأشيرة وإدارة الملف حتى القرار"
+        ]
+      }
     },
     {
       "id": "employer",
       "slug": "employer-sponsored",
-      "title": "Employer Sponsored Visas",
-      "navLabel": "Employer Sponsored",
-      "description": "We assist employers and employees with temporary and permanent work visa solutions.",
       "icon": "employer",
-      "heroDescription": "Support for employers and overseas workers navigating sponsorship, nomination, and work visa pathways to Australia.",
-      "overview": [
-        "Employer sponsored visas allow Australian businesses to fill skill shortages with overseas talent.",
-        "We work with both employers and applicants to meet sponsorship obligations and lodge compliant applications."
-      ],
-      "includes": [
-        "Sponsorship and nomination advice",
-        "Temporary and permanent work visa options",
-        "Labour market testing guidance",
-        "Document checklists and lodgement support",
-        "Ongoing compliance advice for employers"
-      ],
-      "whoFor": [
-        "Australian employers seeking to sponsor overseas workers",
-        "Overseas professionals with a job offer in Australia",
-        "Businesses needing end-to-end sponsorship support"
-      ],
-      "process": [
-        "Assess business and role eligibility",
-        "Prepare sponsorship and nomination",
-        "Lodge the visa application",
-        "Support through to grant and post-grant obligations"
-      ]
+      "title": {
+        "en": "Employer Sponsored Visas",
+        "ar": "تأشيرات رعاية صاحب العمل"
+      },
+      "navLabel": {
+        "en": "Employer Sponsored",
+        "ar": "رعاية صاحب العمل"
+      },
+      "description": {
+        "en": "We assist employers and employees with temporary and permanent work visa solutions.",
+        "ar": "نساعد أصحاب العمل والموظفين في حلول تأشيرات العمل المؤقتة والدائمة."
+      },
+      "heroDescription": {
+        "en": "Support for employers and overseas workers navigating sponsorship, nomination, and work visa pathways to Australia.",
+        "ar": "دعم لأصحاب العمل والعمال من الخارج في مسارات الرعاية والترشيح وتأشيرات العمل إلى أستراليا."
+      },
+      "overview": {
+        "en": [
+          "Employer sponsored visas allow Australian businesses to fill skill shortages with overseas talent.",
+          "We work with both employers and applicants to meet sponsorship obligations and lodge compliant applications."
+        ],
+        "ar": [
+          "تتيح تأشيرات رعاية صاحب العمل للشركات الأسترالية سد نقص المهارات بالكفاءات من الخارج.",
+          "نعمل مع أصحاب العمل والمتقدمين للوفاء بالتزامات الرعاية وتقديم طلبات متوافقة."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Sponsorship and nomination advice",
+          "Temporary and permanent work visa options",
+          "Labour market testing guidance",
+          "Document checklists and lodgement support",
+          "Ongoing compliance advice for employers"
+        ],
+        "ar": [
+          "نصيحة حول الرعاية والترشيح",
+          "خيارات تأشيرات العمل المؤقتة والدائمة",
+          "إرشاد اختبار سوق العمل",
+          "قوائم المستندات ودعم التقديم",
+          "نصيحة امتثال مستمرة لأصحاب العمل"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "Australian employers seeking to sponsor overseas workers",
+          "Overseas professionals with a job offer in Australia",
+          "Businesses needing end-to-end sponsorship support"
+        ],
+        "ar": [
+          "أصحاب العمل الأستراليون الراغبون في رعاية عمال من الخارج",
+          "المهنيون من الخارج الحاصلون على عرض عمل في أستراليا",
+          "الشركات التي تحتاج دعماً شاملاً للرعاية"
+        ]
+      },
+      "process": {
+        "en": [
+          "Assess business and role eligibility",
+          "Prepare sponsorship and nomination",
+          "Lodge the visa application",
+          "Support through to grant and post-grant obligations"
+        ],
+        "ar": [
+          "تقييم أهلية الشركة والوظيفة",
+          "إعداد الرعاية والترشيح",
+          "تقديم طلب التأشيرة",
+          "الدعم حتى المنح والالتزامات بعد المنح"
+        ]
+      }
     },
     {
       "id": "family",
       "slug": "family-partner",
-      "title": "Family & Partner Visas",
-      "navLabel": "Family Visas",
-      "description": "Reunite with your loved ones in Australia through partner, parent, and family visas.",
       "icon": "family",
-      "heroDescription": "Help reuniting partners, parents, and family members through Australia’s family migration pathways.",
-      "overview": [
-        "Family and partner visas help eligible sponsors bring loved ones to Australia to live, work, and build a future together.",
-        "We guide you through relationship evidence, sponsorship requirements, and a carefully prepared application."
-      ],
-      "includes": [
-        "Partner, spouse, and de facto visa advice",
-        "Parent and other family visa options",
-        "Relationship evidence guidance",
-        "Sponsorship and application preparation",
-        "Support through processing and bridging visas"
-      ],
-      "whoFor": [
-        "Partners of Australian citizens or permanent residents",
-        "Families seeking to reunite in Australia",
-        "Sponsors who need clear guidance on evidence and eligibility"
-      ],
-      "process": [
-        "Confirm the right family pathway",
-        "Collect and organise supporting evidence",
-        "Lodge a complete application",
-        "Manage requests for further information until decision"
-      ]
+      "title": {
+        "en": "Family & Partner Visas",
+        "ar": "تأشيرات العائلة والشريك"
+      },
+      "navLabel": {
+        "en": "Family Visas",
+        "ar": "تأشيرات العائلة"
+      },
+      "description": {
+        "en": "Reunite with your loved ones in Australia through partner, parent, and family visas.",
+        "ar": "اجتمع بأحبائك في أستراليا عبر تأشيرات الشريك والوالدين والعائلة."
+      },
+      "heroDescription": {
+        "en": "Help reuniting partners, parents, and family members through Australia’s family migration pathways.",
+        "ar": "مساعدة في جمع الشمل للشركاء والوالدين وأفراد العائلة عبر مسارات هجرة العائلة في أستراليا."
+      },
+      "overview": {
+        "en": [
+          "Family and partner visas help eligible sponsors bring loved ones to Australia to live, work, and build a future together.",
+          "We guide you through relationship evidence, sponsorship requirements, and a carefully prepared application."
+        ],
+        "ar": [
+          "تساعد تأشيرات العائلة والشريك الرعاة المؤهلين على إحضار أحبائهم إلى أستراليا للعيش والعمل وبناء المستقبل معاً.",
+          "نرشدك في أدلة العلاقة ومتطلبات الرعاية وإعداد طلب بعناية."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Partner, spouse, and de facto visa advice",
+          "Parent and other family visa options",
+          "Relationship evidence guidance",
+          "Sponsorship and application preparation",
+          "Support through processing and bridging visas"
+        ],
+        "ar": [
+          "نصيحة حول تأشيرات الشريك والزوج/الزوجة والعلاقة الفعلية",
+          "خيارات تأشيرات الوالدين والعائلة الأخرى",
+          "إرشاد أدلة العلاقة",
+          "إعداد الرعاية والطلب",
+          "الدعم أثناء المعالجة وتأشيرات الجسر"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "Partners of Australian citizens or permanent residents",
+          "Families seeking to reunite in Australia",
+          "Sponsors who need clear guidance on evidence and eligibility"
+        ],
+        "ar": [
+          "شركاء المواطنين الأستراليين أو المقيمين الدائمين",
+          "العائلات الساعية للجمع في أستراليا",
+          "الرعاة الذين يحتاجون إرشاداً واضحاً حول الأدلة والأهلية"
+        ]
+      },
+      "process": {
+        "en": [
+          "Confirm the right family pathway",
+          "Collect and organise supporting evidence",
+          "Lodge a complete application",
+          "Manage requests for further information until decision"
+        ],
+        "ar": [
+          "تأكيد مسار العائلة المناسب",
+          "جمع وتنظيم الأدلة الداعمة",
+          "تقديم طلب مكتمل",
+          "إدارة طلبات المعلومات الإضافية حتى القرار"
+        ]
+      }
     },
     {
       "id": "student",
       "slug": "student-visas",
-      "title": "Student Visas",
-      "navLabel": "Student Visas",
-      "description": "We guide students to study in Australia with the right visa and ongoing support.",
       "icon": "student",
-      "heroDescription": "Guidance for international students applying for an Australian student visa with the right course, funds, and documentation.",
-      "overview": [
-        "A student visa lets you study full-time with an eligible education provider in Australia.",
-        "We help you meet Genuine Temporary Entrant requirements, arrange OSHC, and lodge a complete application."
-      ],
-      "includes": [
-        "Course and provider guidance",
-        "GTE / Genuine Student requirement support",
-        "Financial capacity evidence advice",
-        "OSHC and document checklist",
-        "Visa lodgement and post-lodgement support"
-      ],
-      "whoFor": [
-        "International students planning to study in Australia",
-        "Applicants changing courses or education providers",
-        "Families supporting a student’s visa application"
-      ],
-      "process": [
-        "Confirm course enrolment and CoE",
-        "Prepare GTE and financial documents",
-        "Lodge the student visa",
-        "Support until a decision is made"
-      ]
+      "title": {
+        "en": "Student Visas",
+        "ar": "تأشيرات الطلاب"
+      },
+      "navLabel": {
+        "en": "Student Visas",
+        "ar": "تأشيرات الطلاب"
+      },
+      "description": {
+        "en": "We guide students to study in Australia with the right visa and ongoing support.",
+        "ar": "نرشد الطلاب للدراسة في أستراليا بالتأشيرة المناسبة والدعم المستمر."
+      },
+      "heroDescription": {
+        "en": "Guidance for international students applying for an Australian student visa with the right course, funds, and documentation.",
+        "ar": "إرشاد للطلاب الدوليين المتقدمين لتأشيرة طالب أسترالية مع الدورة والتمويل والمستندات المناسبة."
+      },
+      "overview": {
+        "en": [
+          "A student visa lets you study full-time with an eligible education provider in Australia.",
+          "We help you meet Genuine Temporary Entrant requirements, arrange OSHC, and lodge a complete application."
+        ],
+        "ar": [
+          "تتيح تأشيرة الطالب الدراسة بدوام كامل لدى مزود تعليم مؤهل في أستراليا.",
+          "نساعدك على تلبية متطلبات الدخول المؤقت الحقيقي وترتيب OSHC وتقديم طلب مكتمل."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Course and provider guidance",
+          "GTE / Genuine Student requirement support",
+          "Financial capacity evidence advice",
+          "OSHC and document checklist",
+          "Visa lodgement and post-lodgement support"
+        ],
+        "ar": [
+          "إرشاد الدورة والمزود التعليمي",
+          "دعم متطلبات الطالب الحقيقي / GTE",
+          "نصيحة أدلة القدرة المالية",
+          "قائمة OSHC والمستندات",
+          "تقديم التأشيرة والدعم بعد التقديم"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "International students planning to study in Australia",
+          "Applicants changing courses or education providers",
+          "Families supporting a student’s visa application"
+        ],
+        "ar": [
+          "الطلاب الدوليون الذين يخططون للدراسة في أستراليا",
+          "المتقدمون لتغيير الدورة أو المزود التعليمي",
+          "العائلات الداعمة لطلب تأشيرة الطالب"
+        ]
+      },
+      "process": {
+        "en": [
+          "Confirm course enrolment and CoE",
+          "Prepare GTE and financial documents",
+          "Lodge the student visa",
+          "Support until a decision is made"
+        ],
+        "ar": [
+          "تأكيد التسجيل وشهادة الالتحاق (CoE)",
+          "إعداد مستندات GTE والتمويل",
+          "تقديم تأشيرة الطالب",
+          "الدعم حتى صدور القرار"
+        ]
+      }
     },
     {
       "id": "visitor",
       "slug": "visitor-visas",
-      "title": "Visitor Visas",
-      "navLabel": "Visitor Visas",
-      "description": "Visit Australia for tourism, business, or to meet family and friends.",
       "icon": "visitor",
-      "heroDescription": "Visitor visa support for tourism, family visits, and short-term business travel to Australia.",
-      "overview": [
-        "Visitor visas are for people who want to visit Australia temporarily for holidays, family, or eligible business activities.",
-        "We help you present a clear travel purpose, strong ties to home, and complete supporting documents."
-      ],
-      "includes": [
-        "Tourist and family visit visa advice",
-        "Short-term business visitor options",
-        "Travel purpose and itinerary guidance",
-        "Financial and home-ties evidence support",
-        "Application lodgement and follow-up"
-      ],
-      "whoFor": [
-        "Tourists planning a holiday in Australia",
-        "People visiting family or friends",
-        "Business travellers attending meetings or conferences"
-      ],
-      "process": [
-        "Confirm the correct visitor stream",
-        "Prepare purpose, funds, and ties evidence",
-        "Lodge the application",
-        "Respond to any further information requests"
-      ]
+      "title": {
+        "en": "Visitor Visas",
+        "ar": "تأشيرات الزيارة"
+      },
+      "navLabel": {
+        "en": "Visitor Visas",
+        "ar": "تأشيرات الزيارة"
+      },
+      "description": {
+        "en": "Visit Australia for tourism, business, or to meet family and friends.",
+        "ar": "زر أستراليا للسياحة أو العمل أو لقاء العائلة والأصدقاء."
+      },
+      "heroDescription": {
+        "en": "Visitor visa support for tourism, family visits, and short-term business travel to Australia.",
+        "ar": "دعم تأشيرات الزيارة للسياحة وزيارات العائلة والسفر القصير للأعمال إلى أستراليا."
+      },
+      "overview": {
+        "en": [
+          "Visitor visas are for people who want to visit Australia temporarily for holidays, family, or eligible business activities.",
+          "We help you present a clear travel purpose, strong ties to home, and complete supporting documents."
+        ],
+        "ar": [
+          "تأشيرات الزيارة لمن يريد زيارة أستراليا مؤقتاً للعطلات أو العائلة أو أنشطة الأعمال المؤهلة.",
+          "نساعدك على تقديم غرض سفر واضح وروابط قوية بالوطن ومستندات داعمة مكتملة."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Tourist and family visit visa advice",
+          "Short-term business visitor options",
+          "Travel purpose and itinerary guidance",
+          "Financial and home-ties evidence support",
+          "Application lodgement and follow-up"
+        ],
+        "ar": [
+          "نصيحة تأشيرات السياحة وزيارة العائلة",
+          "خيارات زائر الأعمال قصيرة الأمد",
+          "إرشاد غرض السفر والجدول",
+          "دعم أدلة التمويل والروابط بالوطن",
+          "تقديم الطلب والمتابعة"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "Tourists planning a holiday in Australia",
+          "People visiting family or friends",
+          "Business travellers attending meetings or conferences"
+        ],
+        "ar": [
+          "السياح الذين يخططون لعطلة في أستراليا",
+          "من يزور العائلة أو الأصدقاء",
+          "مسافرو الأعمال لحضور اجتماعات أو مؤتمرات"
+        ]
+      },
+      "process": {
+        "en": [
+          "Confirm the correct visitor stream",
+          "Prepare purpose, funds, and ties evidence",
+          "Lodge the application",
+          "Respond to any further information requests"
+        ],
+        "ar": [
+          "تأكيد مسار الزيارة الصحيح",
+          "إعداد أدلة الغرض والتمويل والروابط",
+          "تقديم الطلب",
+          "الرد على أي طلبات معلومات إضافية"
+        ]
+      }
     },
     {
       "id": "appeals",
       "slug": "aat-appeals",
-      "title": "AAT Appeals & Reviews",
-      "navLabel": "AAT Appeals",
-      "description": "We provide expert assistance with visa refusals, appeals, and AAT matters.",
       "icon": "appeals",
-      "heroDescription": "Expert support if your visa was refused — including merits review and appeal strategy before the Administrative Review Tribunal.",
-      "overview": [
-        "A visa refusal does not always mean the end of your pathway. In many cases, you may seek merits review within strict time limits.",
-        "We review the decision, identify appealable issues, and prepare a clear case for review."
-      ],
-      "includes": [
-        "Refusal decision analysis",
-        "Appeal eligibility and deadline advice",
-        "Preparation of review submissions",
-        "Evidence strategy for hearing or papers review",
-        "Representation and case management support"
-      ],
-      "whoFor": [
-        "Applicants whose visa was refused",
-        "People needing urgent advice on review deadlines",
-        "Cases requiring a structured merits review strategy"
-      ],
-      "process": [
-        "Review the refusal and time limits",
-        "Advise on appeal prospects",
-        "Prepare and lodge the review",
-        "Manage the case through to hearing or decision"
-      ]
+      "title": {
+        "en": "AAT Appeals & Reviews",
+        "ar": "استئنافات ومراجعات AAT"
+      },
+      "navLabel": {
+        "en": "AAT Appeals",
+        "ar": "استئنافات AAT"
+      },
+      "description": {
+        "en": "We provide expert assistance with visa refusals, appeals, and AAT matters.",
+        "ar": "نقدم مساعدة متخصصة في رفض التأشيرات والاستئنافات وأمور AAT."
+      },
+      "heroDescription": {
+        "en": "Expert support if your visa was refused — including merits review and appeal strategy before the Administrative Review Tribunal.",
+        "ar": "دعم متخصص إذا رُفضت تأشيرتك — بما في ذلك مراجعة الجدارة واستراتيجية الاستئناف أمام محكمة المراجعة الإدارية."
+      },
+      "overview": {
+        "en": [
+          "A visa refusal does not always mean the end of your pathway. In many cases, you may seek merits review within strict time limits.",
+          "We review the decision, identify appealable issues, and prepare a clear case for review."
+        ],
+        "ar": [
+          "رفض التأشيرة لا يعني دائماً نهاية المسار. في كثير من الحالات يمكن طلب مراجعة الجدارة ضمن مهلة زمنية صارمة.",
+          "نراجع القرار ونحدد نقاط الاستئناف ونعد ملفاً واضحاً للمراجعة."
+        ]
+      },
+      "includes": {
+        "en": [
+          "Refusal decision analysis",
+          "Appeal eligibility and deadline advice",
+          "Preparation of review submissions",
+          "Evidence strategy for hearing or papers review",
+          "Representation and case management support"
+        ],
+        "ar": [
+          "تحليل قرار الرفض",
+          "نصيحة أهلية الاستئناف والمواعيد",
+          "إعداد مذكرات المراجعة",
+          "استراتيجية الأدلة للجلسة أو المراجعة الورقية",
+          "التمثيل ودعم إدارة الملف"
+        ]
+      },
+      "whoFor": {
+        "en": [
+          "Applicants whose visa was refused",
+          "People needing urgent advice on review deadlines",
+          "Cases requiring a structured merits review strategy"
+        ],
+        "ar": [
+          "المتقدمون الذين رُفضت تأشيراتهم",
+          "من يحتاج نصيحة عاجلة حول مواعيد المراجعة",
+          "الحالات التي تحتاج استراتيجية منظمة لمراجعة الجدارة"
+        ]
+      },
+      "process": {
+        "en": [
+          "Review the refusal and time limits",
+          "Advise on appeal prospects",
+          "Prepare and lodge the review",
+          "Manage the case through to hearing or decision"
+        ],
+        "ar": [
+          "مراجعة الرفض والمواعيد النهائية",
+          "تقديم المشورة حول فرص الاستئناف",
+          "إعداد وتقديم المراجعة",
+          "إدارة الملف حتى الجلسة أو القرار"
+        ]
+      }
     }
   ]
 }
