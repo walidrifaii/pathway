@@ -5,5 +5,5 @@ export const routes = {
   contact: "/contact",
   requirements: "/requirements",
   blog: "/blog",
-  consultation: "/contact",
+  consultation: "/consultation",
 } as const;

@@ -8,7 +8,7 @@ export const homeContent = {
     "RAE Pathways is your trusted partner in achieving your Australian dream. We guide you every step of the way.",
   primaryCta: {
     label: "Book a Consultation",
-    href: "/contact",
+    href: "/consultation",
   },
   secondaryCta: {
     label: "Explore Services",

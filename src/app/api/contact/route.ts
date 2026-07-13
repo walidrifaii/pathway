@@ -2,17 +2,16 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { contactInfo } from "@/constants/contact";
 import { config } from "@/constants/config";
+import { isValidEmail, isValidPhone } from "@/lib/validation";
 
 type ContactBody = {
+  type?: "contact" | "consultation";
   fullName?: string;
   email?: string;
   phone?: string;
+  service?: string;
   enquiry?: string;
 };
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
 
 function escapeHtml(value: string) {
   return value
@@ -25,20 +24,37 @@ function escapeHtml(value: string) {
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ContactBody;
+    const type = body.type === "consultation" ? "consultation" : "contact";
     const fullName = body.fullName?.trim() ?? "";
     const email = body.email?.trim() ?? "";
     const phone = body.phone?.trim() ?? "";
+    const service = body.service?.trim() ?? "";
     const enquiry = body.enquiry?.trim() ?? "";
 
-    if (!fullName || !email || !enquiry) {
-      return NextResponse.json(
-        { error: "Please fill in your name, email, and enquiry." },
-        { status: 400 },
-      );
+    if (!fullName || fullName.length < 2) {
+      return NextResponse.json({ error: "Enter your full name." }, { status: 400 });
     }
 
-    if (!isValidEmail(email)) {
-      return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+    if (!email || !isValidEmail(email)) {
+      return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
+    }
+
+    if (type === "consultation") {
+      if (!phone || !isValidPhone(phone)) {
+        return NextResponse.json({ error: "Enter a valid phone number." }, { status: 400 });
+      }
+      if (!service) {
+        return NextResponse.json({ error: "Please select a service." }, { status: 400 });
+      }
+    } else if (phone && !isValidPhone(phone)) {
+      return NextResponse.json({ error: "Enter a valid phone number." }, { status: 400 });
+    }
+
+    if (!enquiry || enquiry.length < 10) {
+      return NextResponse.json(
+        { error: "Please write a message of at least 10 characters." },
+        { status: 400 },
+      );
     }
 
     const smtpHost = process.env.MAIL_HOST || process.env.SMTP_HOST;
@@ -62,7 +78,6 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
-      // 465 = implicit SSL; 587 usually uses STARTTLS
       secure: encryption === "ssl" && smtpPort === 465,
       requireTLS: encryption === "tls" || (encryption === "ssl" && smtpPort === 587),
       auth: {
@@ -71,24 +86,32 @@ export async function POST(request: Request) {
       },
     });
 
+    const subjectPrefix = type === "consultation" ? "Consultation request" : "New enquiry";
+
     await transporter.sendMail({
       from: `"${fromName}" <${fromAddress}>`,
       to: toEmail,
       replyTo: email,
-      subject: `New enquiry from ${fullName}`,
+      subject: `${subjectPrefix} from ${fullName}`,
       text: [
+        `Type: ${type}`,
         `Name: ${fullName}`,
         `Email: ${email}`,
         `Phone: ${phone || "Not provided"}`,
+        service ? `Service: ${service}` : null,
         "",
-        "Enquiry:",
+        "Message:",
         enquiry,
-      ].join("\n"),
+      ]
+        .filter(Boolean)
+        .join("\n"),
       html: `
+        <p><strong>Type:</strong> ${escapeHtml(type)}</p>
         <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
-        <p><strong>Enquiry:</strong></p>
+        ${service ? `<p><strong>Service:</strong> ${escapeHtml(service)}</p>` : ""}
+        <p><strong>Message:</strong></p>
         <p>${escapeHtml(enquiry).replace(/\n/g, "<br />")}</p>
       `,
     });

@@ -1,14 +1,32 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { contactPageContent } from "@/features/contact/data";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
+import { consultationPageContent } from "@/features/consultation/data";
 import { fieldClassName, formErrorTextClass, formLabelClass } from "@/lib/form-styles";
-import { hasErrors, validateContactFields, type FieldErrors } from "@/lib/validation";
+import { hasErrors, validateConsultationFields, type FieldErrors } from "@/lib/validation";
 
-export function ContactForm() {
+type ConsultationFormProps = {
+  services: { slug: string; title: string }[];
+};
+
+export function ConsultationForm({ services }: ConsultationFormProps) {
+  const searchParams = useSearchParams();
+  const presetService = searchParams.get("service") ?? "";
+
+  const resolvedPreset = useMemo(() => {
+    if (services.some((service) => service.slug === presetService)) return presetService;
+    return "";
+  }, [presetService, services]);
+
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [service, setService] = useState(resolvedPreset);
+
+  useEffect(() => {
+    setService(resolvedPreset);
+  }, [resolvedPreset]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,10 +39,11 @@ export function ContactForm() {
       fullName: String(formData.get("fullName") ?? ""),
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
-      enquiry: String(formData.get("enquiry") ?? ""),
+      service: String(formData.get("service") ?? ""),
+      message: String(formData.get("message") ?? ""),
     };
 
-    const nextErrors = validateContactFields(values);
+    const nextErrors = validateConsultationFields(values);
     setErrors(nextErrors);
 
     if (hasErrors(nextErrors)) {
@@ -34,16 +53,20 @@ export function ContactForm() {
 
     setStatus("loading");
 
+    const serviceTitle =
+      services.find((item) => item.slug === values.service)?.title ?? values.service;
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "contact",
+          type: "consultation",
           fullName: values.fullName,
           email: values.email,
           phone: values.phone,
-          enquiry: values.enquiry,
+          service: serviceTitle,
+          enquiry: values.message,
         }),
       });
 
@@ -51,16 +74,17 @@ export function ContactForm() {
 
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage(data.error || "Could not send your message. Please try again.");
+        setErrorMessage(data.error || "Could not send your request. Please try again.");
         return;
       }
 
       setStatus("success");
       setErrors({});
       form.reset();
+      setService("");
     } catch {
       setStatus("error");
-      setErrorMessage("Could not send your message. Please try again.");
+      setErrorMessage("Could not send your request. Please try again.");
     }
   }
 
@@ -80,8 +104,11 @@ export function ContactForm() {
       noValidate
     >
       <h2 className="font-display text-2xl font-bold text-navy sm:text-[1.75rem]">
-        {contactPageContent.formTitle}
+        {consultationPageContent.formTitle}
       </h2>
+      <p className="mt-2 text-base text-muted">
+        Choose a service and share a short message about your situation.
+      </p>
 
       <div className="mt-6 flex flex-col gap-5">
         <div>
@@ -95,7 +122,7 @@ export function ContactForm() {
             autoComplete="name"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.fullName))}
-            placeholder="Full Name"
+            placeholder="Your full name"
             onChange={() => clearError("fullName")}
           />
           {errors.fullName ? <p className={formErrorTextClass}>{errors.fullName}</p> : null}
@@ -112,7 +139,7 @@ export function ContactForm() {
             autoComplete="email"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.email))}
-            placeholder="Email Address"
+            placeholder="you@example.com"
             onChange={() => clearError("email")}
           />
           {errors.email ? <p className={formErrorTextClass}>{errors.email}</p> : null}
@@ -129,26 +156,51 @@ export function ContactForm() {
             autoComplete="tel"
             disabled={status === "loading"}
             className={fieldClassName(Boolean(errors.phone))}
-            placeholder="Phone Number"
+            placeholder="+61 ..."
             onChange={() => clearError("phone")}
           />
           {errors.phone ? <p className={formErrorTextClass}>{errors.phone}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="enquiry" className={formLabelClass}>
-            Your Enquiry
+          <label htmlFor="service" className={formLabelClass}>
+            Service
+          </label>
+          <select
+            id="service"
+            name="service"
+            value={service}
+            disabled={status === "loading"}
+            className={fieldClassName(Boolean(errors.service))}
+            onChange={(event) => {
+              setService(event.target.value);
+              clearError("service");
+            }}
+          >
+            <option value="">Select a service</option>
+            {services.map((item) => (
+              <option key={item.slug} value={item.slug}>
+                {item.title}
+              </option>
+            ))}
+          </select>
+          {errors.service ? <p className={formErrorTextClass}>{errors.service}</p> : null}
+        </div>
+
+        <div>
+          <label htmlFor="message" className={formLabelClass}>
+            Message
           </label>
           <textarea
-            id="enquiry"
-            name="enquiry"
+            id="message"
+            name="message"
             rows={5}
             disabled={status === "loading"}
-            className={`${fieldClassName(Boolean(errors.enquiry))} min-h-[140px] resize-y`}
-            placeholder="Your Enquiry"
-            onChange={() => clearError("enquiry")}
+            className={`${fieldClassName(Boolean(errors.message))} min-h-[140px] resize-y`}
+            placeholder="Tell us about your goals, timeline, or questions..."
+            onChange={() => clearError("message")}
           />
-          {errors.enquiry ? <p className={formErrorTextClass}>{errors.enquiry}</p> : null}
+          {errors.message ? <p className={formErrorTextClass}>{errors.message}</p> : null}
         </div>
       </div>
 
@@ -157,12 +209,12 @@ export function ContactForm() {
         disabled={status === "loading"}
         className="mt-6 w-full rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "loading" ? "Sending..." : contactPageContent.submitLabel}
+        {status === "loading" ? "Sending..." : consultationPageContent.submitLabel}
       </button>
 
       {status === "success" ? (
         <p className="mt-4 text-sm text-navy/70" role="status">
-          Thanks — your message has been sent. We&apos;ll be in touch soon.
+          Thanks — your consultation request has been sent. We&apos;ll contact you soon.
         </p>
       ) : null}
 

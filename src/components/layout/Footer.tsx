@@ -102,7 +102,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="font-medium text-gold transition-colors hover:text-white"
             >
-              AMC
+              Amctag
             </a>
           </p>
         </div>

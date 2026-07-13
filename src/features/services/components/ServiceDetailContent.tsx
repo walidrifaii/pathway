@@ -86,7 +86,7 @@ export function ServiceDetailContent({ service }: ServiceDetailContentProps) {
             Book a consultation and we&apos;ll assess your options for {service.title.toLowerCase()}.
           </p>
           <Link
-            href={routes.consultation}
+            href={`${routes.consultation}?service=${service.slug}`}
             className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-gold-hover"
           >
             Book a Consultation

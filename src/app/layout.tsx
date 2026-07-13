@@ -20,6 +20,10 @@ const libreBaskerville = Libre_Baskerville({
 export const metadata: Metadata = {
   title: `${config.appName} | Travel & Migration`,
   description: config.description,
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
