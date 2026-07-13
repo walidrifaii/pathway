@@ -7,7 +7,8 @@ NEXT_TELEMETRY_DISABLED = "1"
 nixPkgs = ["nodejs_20", "npm-10_x"]
 
 [phases.install]
-cmds = ["npm ci"]
+# Prefer lockfile; fall back if lock is temporarily out of sync on the server
+cmds = ["npm ci || npm install"]
 
 [phases.build]
 cmds = ["npm run build"]

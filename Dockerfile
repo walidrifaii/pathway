@@ -10,6 +10,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_OPTIONS=--max-old-space-size=4096
+# Do NOT bake mail secrets into the image — set them at runtime in Easypanel
 RUN npm run build
 
 FROM node:20-bookworm-slim AS runner
