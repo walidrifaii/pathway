@@ -209,16 +209,16 @@ body {
 }
 
 .animate-preloader-plane-line {
-  animation: preloader-plane-line 4s cubic-bezier(0.45, 0.05, 0.25, 1) forwards;
+  animation: preloader-plane-line 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   will-change: left, transform, opacity;
 }
 
 .animate-preloader-line {
-  animation: preloader-line-shimmer 4s ease-in-out forwards;
+  animation: preloader-line-shimmer 0.9s ease-in-out forwards;
 }
 
 .animate-preloader-dash {
-  animation: preloader-dash 1.2s linear infinite;
+  animation: preloader-dash 0.45s linear infinite;
 }
 
 .animate-preloader-trail {
@@ -226,15 +226,15 @@ body {
 }
 
 .animate-preloader-brand {
-  animation: preloader-brand 0.7s ease-out both;
+  animation: preloader-brand 0.35s ease-out both;
 }
 
 .animate-preloader-dot {
-  animation: preloader-dot 1.2s ease-in-out infinite;
+  animation: preloader-dot 0.8s ease-in-out infinite;
 }
 
 .animate-preloader-exit {
-  animation: preloader-exit 0.65s ease forwards;
+  animation: preloader-exit 0.28s ease forwards;
 }
 
 .animate-fade-up {

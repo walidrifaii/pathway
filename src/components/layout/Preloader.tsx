@@ -5,8 +5,8 @@ import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
 
 /** Must match `.animate-preloader-plane-line` duration */
-const FLIGHT_MS = 4000;
-const EXIT_MS = 700;
+const FLIGHT_MS = 900;
+const EXIT_MS = 280;
 
 function PlaneIcon({ className }: { className?: string }) {
   return (
